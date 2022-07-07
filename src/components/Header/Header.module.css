@@ -1,0 +1,29 @@
+.container {
+  max-width: 1200px;
+  width: 96%;
+  margin: 0 auto;
+}
+
+.nav_links {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+}
+
+.nav_links > * {
+  margin-right: 16px;
+}
+
+.nav_item {
+  color: black;
+}
+
+.login_btn {
+  border: none;
+  padding: 0.5rem 1rem;
+  background-color: var(--play-btn);
+  /* background-color: antiquewhite; */
+  cursor: pointer;
+  color: var(--category-text);
+  text-decoration: none;
+}
