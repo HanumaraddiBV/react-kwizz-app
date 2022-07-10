@@ -12,6 +12,7 @@ import Category from "./Pages/category/Category";
 import Header from './components/Header/Header'
 import { Suspense } from "react";
 import i18n from "./i18n/i18n";
+import { Quiz } from "./Pages/Quiz/Quiz";
 function App() {
   return (
     <div className="App">
@@ -24,7 +25,7 @@ function App() {
         <Route path="/login" component={Login} />
         <Route path='/category' component={Category}/>
         <Route path='/rules/:category' component={Rules}/>
-          {/* <Route path='/quiz/:category' element={<Quiz/>}/> */}
+          <Route path='/quiz/:category' component={Quiz}/>
       </Switch>
     </Suspense>
     </I18nextProvider>

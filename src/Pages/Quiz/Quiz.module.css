@@ -1,0 +1,49 @@
+.quiz_container {
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: 1.8rem;
+}
+
+.quiz_title {
+  text-align: center;
+}
+
+/* Quiz Header */
+.quiz_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.quiz_question_count,
+.quiz_score {
+  font-size: 1.4rem;
+}
+
+/* Quiz Question */
+.quiz_question {
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+/* Quiz Option */
+.quiz_options {
+  max-width: 410px;
+  margin: 0 auto;
+  box-sizing: content-box;
+}
+
+.sel_option {
+  background-color: #e7c6ff;
+}
+
+/* Quiz Footer */
+.next {
+  display: block;
+  border: none;
+  background-color: var(--next-btn);
+  border-radius: 2px;
+  font-weight: bold;
+  padding: 0.6rem 1rem;
+  margin: 0 auto;
+}
