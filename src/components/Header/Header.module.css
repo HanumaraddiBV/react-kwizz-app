@@ -12,8 +12,12 @@
 
 .nav_links > * {
   margin-right: 16px;
+ 
 }
-
+.nav_links li{
+  list-style: none;
+ 
+}
 .nav_item {
   color: black;
 }

@@ -13,6 +13,7 @@ export default class Home extends Component {
             <h2 className={styles.hero_text}>
               Get Smarter By Playing Knowledgeable and Exciting Quiz.
             </h2>
+            {/* It will redirected to the user to category page */}
             <Link to="/category" className={styles.play_btn}>
               Play!
             </Link>

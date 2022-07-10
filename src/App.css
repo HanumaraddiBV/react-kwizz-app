@@ -1,38 +1,84 @@
-.App {
-  text-align: center;
+.auth-container {
+  max-width: 325px;
+  padding: 1.2rem 2.2rem;
+  border-radius: 3px;
+  box-sizing: content-box;
+  background-color: white;
+  box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.textfield,
+input[type="password"] {
+  min-width: none !important;
+  width: 90%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.name-container .input-group {
+  max-width: 200px;
+  width: 50%;
+  margin-bottom: 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.name-container .input-group + .input-group {
+  margin-left: 8px;
+}
+
+.input-group {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.choice-group {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+}
+
+.btn-primary {
+  width: 100%;
+  transition: none;
+  text-transform: capitalize;
+  margin: 1rem 0;
+  border-radius: 3px;
+  background-color: var(--play-btn);
+  color: var(--category-text);
+  font-weight: bold;
+}
+
+.guest-btn {
+  background-color: var(--next-btn);
+}
+
+.signup-group {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  margin: 0 0 1rem 0;
 }
 
-.App-link {
-  color: #61dafb;
+.signup-link {
+  color: #57cc99;
+  margin-bottom: 2px;
+  text-decoration: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.quiz_option {
+  padding: 1rem;
+  display: block;
+  width: 100%;
+  margin: 0.6rem 0;
+  border-radius: 8px;
+  background-color: white;
+  font-family: "Poppins", sans-serif;
+  color: black;
+  text-align: left;
+  border: 3px solid var(--option-border-color);
+}
+
+.quiz_option:hover {
+  box-shadow: 2px 5px 3px rgba(0, 0, 0, 0.5);
 }

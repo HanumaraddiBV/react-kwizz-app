@@ -1,0 +1,35 @@
+.view_pass {
+  border: 1px solid black;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  max-width: 286px;
+}
+
+.confirm_pass {
+  border: none;
+  outline: none;
+  border-right: 1px solid black;
+  width: 80%;
+  min-width: 100px !important;
+}
+
+.visi_btn {
+  border: none;
+  background-color: transparent;
+}
+
+.signup_group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signup_link {
+  text-decoration: none;
+  color: #57cc99;
+}
+
+.error {
+  color: #e71d36;
+}
