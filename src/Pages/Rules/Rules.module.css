@@ -1,0 +1,35 @@
+.rules_container {
+  padding: 0.6rem;
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: 2.6rem;
+}
+
+.rules_footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.goback_btn {
+  background-color: var(--goback-btn);
+}
+
+.startplay_btn {
+  background-color: var(--play-btn);
+}
+
+.goback_btn,
+.startplay_btn {
+  text-decoration: none;
+}
+
+@media only screen and (min-width: 638px) {
+  ol {
+    margin-bottom: 2.4rem;
+  }
+
+  ol li {
+    margin-top: 1rem;
+  }
+}
