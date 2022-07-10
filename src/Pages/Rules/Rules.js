@@ -1,26 +1,26 @@
+import { useTranslation } from "react-i18next";
 import { Link, useParams } from "react-router-dom";
 
 import styles from "./Rules.module.css";
 
 const Rules = () => {
   const { category } = useParams();
+  const {t} = useTranslation()
   return (
     <div>
       <div className={styles.rules_container}>
-        <h2>Rules</h2>
+        <h2>{t('Rules')}</h2>
         <ol>
-          <li>There are total 5 Questions for each Quiz.</li>
-          <li>Once you Select the Option you cannot change your answer.</li>
+          <li>{t('First_Point')}</li>
+          <li>{t('Second_Point')}</li>
           <li>
-            After selecting option you will see a button below options for going
-            to next question.
+            {t('Third_Point')}
           </li>
           <li>
-            Once you go to next question you cannot jump to previous question.
+            {t('Fourth_Point')}
           </li>
           <li>
-            After answering all 5 questions you will reach on the result page
-            where you can see your score.
+            {t('Fifth_Point')}
           </li>
         </ol>
         <div className={styles.rules_footer}>
@@ -29,14 +29,14 @@ const Rules = () => {
             to="/category"
             className={`btn btn-default ${styles.goback_btn}`}
           >
-            Go Back
+            {t('Go Back')}
           </Link>
           {/* when user click start playing button he will redirected to the quiz page user can get all the questions and answers */}
           <Link
             to={`/quiz/${category}`}
             className={`btn btn-default ${styles.startplay_btn}`}
           >
-            Start Playing
+            {t('Start Playing')}
           </Link>
         </div>
       </div>

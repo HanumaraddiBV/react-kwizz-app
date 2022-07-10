@@ -11,6 +11,10 @@
   justify-content: space-evenly;
   min-height: 86vh;
 }
+.category_container img{
+  width: 28rem;
+  height: 22rem;
+}
 
 @media only screen and (min-width: 768px) {
   .category_container {

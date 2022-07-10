@@ -14,6 +14,7 @@ import styles from "./Header.module.css";
     const changeLanguage = lng => {
         i18n.changeLanguage(lng);
       };
+      const {t} = this.props
     return (
       <React.Fragment>
         <header className={styles.nav_container}>
@@ -24,10 +25,10 @@ import styles from "./Header.module.css";
             {/* all nav bar routing are linked here */}
             <ul className={styles.nav_links}>
               <li>
-                <Link to="/home">Home</Link>
+                <Link to="/home">{t('Home')}</Link>
               </li>
               <li>
-                <Link to="/login">Login</Link>
+                <Link to="/login">{t('Login')}</Link>
               </li>
               <li>
               <button onClick={() => changeLanguage('en')}>English</button>

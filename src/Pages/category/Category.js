@@ -1,20 +1,25 @@
 import React, { Component } from 'react'
-import english from "../../Images/English.png";
-import maths from "../../Images/Mathematics.png";
-import science from "../../Images/Science.png";
+import { withTranslation } from 'react-i18next';
+
+import ReactImage from '../../Images/ReactImage.png'
+import JavaLogo from '../../Images/JavaLogo.jpg'
+import JavascriptLogo from '../../Images/JavascriptLogo.png'
 import CategoryItem from '../CategoryList/CategoryItem';
 import styles from "./Category.module.css";
-export default class Category extends Component {
+ class Category extends Component {
   render() {
+    const {t} = this.props;
     return (
       <div>
       {/* creating card like elements for particular category of quiz */}
         <div className={styles.category_container}>
-        <CategoryItem title="Maths" image={maths} />
-        <CategoryItem title="English" image={english} />
-        <CategoryItem title="Science" image={science} />
+        <CategoryItem title={t('React')} image={ReactImage} />
+        <CategoryItem title={t("Javascript")} image={JavascriptLogo} />
+        <CategoryItem title={t('Java')} image={JavaLogo} />
       </div>
       </div>
     )
   }
 }
+
+export default withTranslation()(Category)

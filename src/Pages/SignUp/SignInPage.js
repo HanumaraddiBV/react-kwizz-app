@@ -5,8 +5,10 @@ import Input from "../../components/GeneralComponents/Input";
 import { Link, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUserDetails } from "../../Redux/Actions";
+import { useTranslation } from "react-i18next";
 const SignInPage = () => {
   const dispatch = useDispatch();
+  const {t} = useTranslation()
   //creating state for user details 
   const [registerData, setRegisterData] = useState({
     name: "",
@@ -50,16 +52,16 @@ const SignInPage = () => {
   };
   return (
     <div className="auth-container">
-      <h2 className="center-text">Signup</h2>
+      <h2 className="center-text">{t('Signup')}</h2>
       <form onSubmit={isRegister}>
         <div className="input-group">
           <Input
             inputType={"name"}
             name={"name"}
-            title={"Name"}
+            title={t("Name")}
             className="textfield"
             required
-            placeholder={"Enter Your Name"}
+            placeholder={t("Enter Your Name")}
             autoComplete="off"
             id="name"
             val={registerData.name}
@@ -70,10 +72,10 @@ const SignInPage = () => {
           <Input
             inputType={"email"}
             name={"email"}
-            title={"Email address"}
+            title={t('Email')}
             className="textfield"
             required
-            placeholder={"Enter Your email"}
+            placeholder={t("Enter Your Email")}
             autoComplete="off"
             id="email"
             val={registerData.email}
@@ -85,16 +87,16 @@ const SignInPage = () => {
           <Input
             inputType={visible ? "text" : "password"}
             name={"password"}
-            title={"Password"}
+            title={t("Password")}
             required
-            placeholder={"Enter Your password"}
+            placeholder={t("Enter Your Password")}
             autoComplete="off"
             val={registerData.password}
             onChange={handleChange}
           />
         </div>
         <div className="input-group">
-          <label htmlFor="confirm_password">Confirm Password</label>
+          <label htmlFor="confirm_password">{t("Confirm Password")}</label>
           <div className={styles.view_pass}>
             <input
               type={visible ? "text" : "password"}
@@ -120,15 +122,15 @@ const SignInPage = () => {
         </div>
         {msg && (
           <span className={`small-text ${styles.error}`}>
-            Password and ConfirmPassword don't Match.
+            {t("Password and ConfirmPassword don't Match")}
           </span>
         )}
-        <button className="btn btn-primary">Create New Account</button>
+        <button className="btn btn-primary">{t('Create New Account')}</button>
       </form>
       <div className={styles.signup_group}>
         <button>
           <Link to="/login" className={styles.signup_link}>
-            Already have an account
+            {t("Already have an account")}
           </Link>
         </button>
         <span className="material-icons-outlined">navigate_next</span>
