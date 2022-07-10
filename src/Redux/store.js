@@ -1,4 +1,5 @@
-
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from "redux";
 import { userReducer } from "./reducer";
-export const Store = createStore(userReducer);
+import logger from "redux-logger";
+const thunk = require("redux-thunk").default;
+export const Store = createStore(userReducer, applyMiddleware(thunk, logger));

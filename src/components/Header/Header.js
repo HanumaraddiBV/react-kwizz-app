@@ -1,14 +1,19 @@
 import React, { Component } from "react";
 import { Link, Route, Switch } from "react-router-dom";
+import { withTranslation } from 'react-i18next'
 import Login from "../../Pages/Login/Login";
 import styles from "./Header.module.css";
-export default class Header extends Component {
+ class Header extends Component {
   constructor() {
     super();
     this.state = {};
   }
   loginOutHandler = () => {};
   render() {
+    const {i18n} = this.props
+    const changeLanguage = lng => {
+        i18n.changeLanguage(lng);
+      };
     return (
       <React.Fragment>
         <header className={styles.nav_container}>
@@ -24,6 +29,11 @@ export default class Header extends Component {
               <li>
                 <Link to="/login">Login</Link>
               </li>
+              <li>
+              <button onClick={() => changeLanguage('en')}>English</button>
+       
+              </li>
+              <li> <button onClick={() => changeLanguage('sp')}>Spanish</button></li>
             </ul>
           </nav>
         </header>
@@ -31,3 +41,6 @@ export default class Header extends Component {
     );
   }
 }
+
+
+export default withTranslation()(Header)

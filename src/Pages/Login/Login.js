@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Link, Redirect, Route, Switch } from "react-router-dom";
 
@@ -6,7 +7,9 @@ import Input from "../../components/GeneralComponents/Input";
 import SignInPage from "../SignUp/SignInPage";
 
 export default function Login() {
+  const { t } = useTranslation();
   //getting the global store data using useSelector  hook
+
   const { userDetails } = useSelector((store) => store);
   //destructuring the email and password from userDetails
   const { email, password } = userDetails;
@@ -40,16 +43,16 @@ export default function Login() {
   return (
     
     <div className="auth-container">
-      <h2 className="form-heading center-text">Login</h2>
+      <h2 className="form-heading center-text">{t('Login')}</h2>
       <form onSubmit={loginHandler}>
         <div className="input-group">
           <Input
             inputType={"email"}
             name={"email"}
-            title={"Email address"}
+            title={t('Email')}
             className="textfield"
             required
-            placeholder={"Enter Your password"}
+            placeholder={t("Enter Your Email")}
             autoComplete="off"
             id="email"
             val={userData.email}
@@ -60,10 +63,10 @@ export default function Login() {
           <Input
             inputType={"password"}
             name={"password"}
-            title={"Password"}
+            title={t("Password")}
             className="textfield"
             required
-            placeholder={"Enter Your password"}
+            placeholder={t("Enter Your Password")}
             autoComplete="off"
             id="password"
             val={userData.password}
@@ -71,13 +74,14 @@ export default function Login() {
           />
         </div>
         <button className="btn btn-primary" type="submit">
-          Login
+          {t('Login')}
+
         </button>
       </form>
       <div className="signup-group">
         <div>
           <Link to="/signup" className="signup-link">
-            Create New Account
+            {t("Create New Account")}
           </Link>
         </div>
       </div>
