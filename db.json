@@ -4,7 +4,19 @@
       "id": 1,
       "name": "Satheesh",
       "email": "Sat@mail.com",
-      "password": 12345
+      "password": "12345"
+    },
+    {
+      "id": 3,
+      "name": "reddy",
+      "email": "hanumaraddi_fw13_095@masai.school",
+      "password": "1234"
+    },
+    {
+      "id": 8,
+      "name": "reddy",
+      "email": "hanumaraddin14@gmail.com",
+      "password": "1234"
     }
   ]
 }

@@ -6,6 +6,7 @@ import { Link, Redirect, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUserDetails } from "../../Redux/Actions";
 import { useTranslation } from "react-i18next";
+import axios from "axios";
 const SignInPage = () => {
   const dispatch = useDispatch();
   const {t} = useTranslation();
@@ -37,14 +38,30 @@ const SignInPage = () => {
     //checking the both passwords
     if (registerData.password !== registerData.confirmPass) {
       setMsg(true);
+      alert('Please check your password once')
     } else {
       setMsg(false);
-    }
-    // console.log(registerData);
+      // console.log(registerData);
     //dispatching the data into reducer 
-    dispatch(addUserDetails(registerData));
+    axios.post('http://localhost:3001/users',{
+      id: Math.floor(Math.random()*10),
+      name:registerData.name,
+      email: registerData.email,
+      password: registerData.password
+    }).then((res)=> {
+      // console.log('res:', res)
+      const userInfo = res.data
+      dispatch(addUserDetails(userInfo));
+    }).catch(err=>{
+    console.log('err:', err)
+    
+
+    })
+   
     alert(`${registerData.name} you are successfully sign up`);
     history.push('/login')
+    }
+    
   };
 
   //logic for password visibility

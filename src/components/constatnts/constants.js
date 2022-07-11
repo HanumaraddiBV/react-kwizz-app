@@ -1,0 +1,1 @@
+export const LOGINPAGE = "./Pages/Login/Login";

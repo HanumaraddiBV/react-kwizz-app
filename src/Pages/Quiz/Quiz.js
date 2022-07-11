@@ -1,16 +1,16 @@
-import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
-import { questionData } from '../../Data/Questions';
-import { answereIsWrong, isAnswered } from '../../Redux/Actions';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
+import { questionData } from "../../Data/Questions";
+import { answereIsWrong, isAnswered } from "../../Redux/Actions";
 import styles from "./Quiz.module.css";
 export const Quiz = () => {
-    const {result,totalScore} = useSelector((store) => store);
-    const dispatch = useDispatch();
-    //keep record of question number
-    const [quesNum, setQuesNum] = useState(0);
+  const { result, totalScore } = useSelector((store) => store);
+  const dispatch = useDispatch();
+  //keep record of question number
+  const [quesNum, setQuesNum] = useState(0);
 
-    //to keep the selected option
+  //to keep the selected option
   const [selected, setSelected] = useState();
 
   // to disabled the options once user selected
@@ -21,12 +21,11 @@ export const Quiz = () => {
   //with help of useParam hook getting the particular category from the url
   const { category } = useParams();
 
-//matching the category with the data
+  //matching the category with the data
   const quizCategory = questionData.find((item) => item.category === category);
 
   // according to the question number getting the correct answer
   const correctAnswer = quizCategory.questions[quesNum].answer;
-  
 
   const optionHandler = (option) => {
     //updateding the selected state to this option
@@ -38,17 +37,20 @@ export const Quiz = () => {
 
     //checking the condition where the user selected option and correct answer are both same or not?
     if (option === correctAnswer) {
-
-    //dispatching the action and payload according to the condition
-      dispatch(isAnswered({
+      //dispatching the action and payload according to the condition
+      dispatch(
+        isAnswered({
           result: { correctAns: correctAnswer, selectedOption: option },
           totalScore: 10,
-        }));
+        })
+      );
     } else {
-      dispatch(answereIsWrong({
-        result: { correctAns: correctAnswer, selectedOption: option },
-        totalScore: 0,
-      }));
+      dispatch(
+        answereIsWrong({
+          result: { correctAns: correctAnswer, selectedOption: option },
+          totalScore: 0,
+        })
+      );
     }
   };
   const nextHandler = () => {
@@ -58,7 +60,7 @@ export const Quiz = () => {
   };
   return (
     <div>
-<div>
+      <div>
         <div className={styles.quiz_container}>
           <div className={styles.quiz_header}>
             <div className={styles.quiz_question_count}>
@@ -95,15 +97,8 @@ export const Quiz = () => {
           </div>
           <div className={styles.quiz_footer}>
             {quesNum === 4 ? (
-              <button
-                className="btn btn-primary"
-            
-                disabled={nxtDisable}
-              >
-              <Link to='/result'>
-
-                Result
-              </Link>
+              <button className="btn btn-primary" disabled={nxtDisable}>
+                <Link to="/result">Result</Link>
               </button>
             ) : (
               <button
@@ -118,5 +113,5 @@ export const Quiz = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

@@ -1,8 +1,9 @@
 import logo from "./logo.svg";
 import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import { Link, Route, Switch } from "react-router-dom";
 import { I18nextProvider } from "react-i18next";
+
 import Home from "./Pages/Home/Home";
 
 import Login from "./Pages/Login/Login";
@@ -28,6 +29,7 @@ function App() {
             <Route path="/rules/:category" component={Rules} />
             <Route path="/quiz/:category" component={Quiz} />
             <Route path="/result" component={Result} />
+            <Route exact path='/' component={Home}/>
           </Switch>
         </Suspense>
       </I18nextProvider>
