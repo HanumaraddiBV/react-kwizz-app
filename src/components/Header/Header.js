@@ -3,6 +3,7 @@ import { Link, Route, Switch } from "react-router-dom";
 import { withTranslation } from 'react-i18next'
 import Login from "../../Pages/Login/Login";
 import styles from "./Header.module.css";
+import { connect } from "react-redux";
  class Header extends Component {
   constructor() {
     super();
@@ -28,7 +29,7 @@ import styles from "./Header.module.css";
                 <Link to="/home">{t('Home')}</Link>
               </li>
               <li>
-                <Link to="/login">{t('Login')}</Link>
+                <Link to="/login">{!this.props.name ?t('Login'): t('Logout')}</Link>
               </li>
               <li>
               <button onClick={() => changeLanguage('en')}>English</button>
@@ -43,5 +44,14 @@ import styles from "./Header.module.css";
   }
 }
 
-
-export default withTranslation()(Header)
+const mapStateToProps = (state) => {
+  return {
+    name: state.userDetails.name,
+  };
+};
+const mapDispatchToProps = dispatch=>{
+  return{
+     
+  }
+}
+export default connect(mapStateToProps) (withTranslation()(Header))

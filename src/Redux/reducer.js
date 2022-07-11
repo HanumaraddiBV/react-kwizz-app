@@ -4,8 +4,8 @@ import { ADD_USER_DETAILS, ANSWER } from "./ActionTypes"
 const init = {
     userDetails: {
         name:null,
-        email:"e@a.com",
-        password:123,
+        email:null,
+        password:null,
     },
     result:[],
     totalScore:0

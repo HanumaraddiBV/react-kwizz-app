@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import { Link, Redirect, Route, Switch } from "react-router-dom";
+import { Link, Redirect, Route, Switch, useHistory } from "react-router-dom";
 
 import Input from "../../components/GeneralComponents/Input";
 import SignInPage from "../SignUp/SignInPage";
 
 export default function Login() {
   const { t } = useTranslation();
+  const history = useHistory()
   //getting the global store data using useSelector  hook
 
   const { userDetails } = useSelector((store) => store);
@@ -30,9 +31,11 @@ export default function Login() {
     if (email == userData.email && password == userData.password) {
       setIsAuth(true);
       alert('You are successfully log in')
+      history.push('/home')
     } else {
       setIsAuth(false);
-      alert("Your entering a wrong credentials please check it once");
+      alert("Your entering a wrong credentials or you have to sign up first");
+      history.push('/signup')
     }
   };
 

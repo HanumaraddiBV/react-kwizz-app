@@ -2,13 +2,14 @@ import React, { useState } from "react";
 
 import styles from "./Signup.module.css";
 import Input from "../../components/GeneralComponents/Input";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUserDetails } from "../../Redux/Actions";
 import { useTranslation } from "react-i18next";
 const SignInPage = () => {
   const dispatch = useDispatch();
-  const {t} = useTranslation()
+  const {t} = useTranslation();
+  const history = useHistory()
   //creating state for user details 
   const [registerData, setRegisterData] = useState({
     name: "",
@@ -43,6 +44,7 @@ const SignInPage = () => {
     //dispatching the data into reducer 
     dispatch(addUserDetails(registerData));
     alert(`${registerData.name} you are successfully sign up`);
+    history.push('/login')
   };
 
   //logic for password visibility
