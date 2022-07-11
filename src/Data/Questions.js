@@ -63,5 +63,37 @@ export const questionData = [
     }
         ]
     },
+
+    //Java category questions
+    {
+        category: "Java",
+        questions:[
+            {
+        question: "Number of primitive data types in Java are?",
+        options: ['6','7','8','9'],
+        answer: "8",
+    },
+    {
+        question: "What is the size of float and double in java?",
+        options: ['32 and 64','32 and 32','64 and 64','64 and 32'],
+        answer: "32 and 64",
+    },
+    {
+        question: "Automatic type conversion is possible in which of the possible cases?",
+        options: ['Byte to int','int to long','long to int','short to int'],
+        answer: "int to long",
+    },
+    {
+        question: "When an array is passed to a method, what does the method receive?",
+        options: ['The reference of the array','a copy of the array','Length of the array','Copy of first element'],
+        answer: "The reference of the array",
+    },
+    {
+        question: "Arrays in java are-",
+        options: ['object references','objects','primitive data types','None'],
+        answer: "objects",
+    }
+        ]
+    },
    
 ];

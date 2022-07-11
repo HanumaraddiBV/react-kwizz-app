@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link, Route, Switch } from "react-router-dom";
 import { I18nextProvider } from 'react-i18next'
 import Home from "./Pages/Home/Home";
