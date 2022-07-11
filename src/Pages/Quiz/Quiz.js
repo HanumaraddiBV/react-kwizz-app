@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { questionData } from '../../Data/Questions';
 import { answereIsWrong, isAnswered } from '../../Redux/Actions';
 import styles from "./Quiz.module.css";
@@ -100,7 +100,10 @@ export const Quiz = () => {
             
                 disabled={nxtDisable}
               >
+              <Link to='/result'>
+
                 Result
+              </Link>
               </button>
             ) : (
               <button

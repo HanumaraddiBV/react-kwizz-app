@@ -13,6 +13,7 @@ import Header from './components/Header/Header'
 import { Suspense } from "react";
 import i18n from "./i18n/i18n";
 import { Quiz } from "./Pages/Quiz/Quiz";
+import Result from "./Pages/Results/Result";
 function App() {
   return (
     <div className="App">
@@ -26,6 +27,7 @@ function App() {
         <Route path='/category' component={Category}/>
         <Route path='/rules/:category' component={Rules}/>
           <Route path='/quiz/:category' component={Quiz}/>
+          <Route path='/result' component={Result}/>
       </Switch>
     </Suspense>
     </I18nextProvider>
