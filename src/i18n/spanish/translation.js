@@ -24,5 +24,6 @@ export const TRANSLATIONS_SP = {
     'Fourth_Point': ' Once you go to next question you cannot jump to previous question.',
     'Fifth_Point':'Después de responder las 5 preguntas, llegará a la página de resultados donde podrá ver su puntuación.',
     'Go Back':'Regresa',
-    'Start Playing':'Empezar a jugar'
+    'Start Playing':'Empezar a jugar',
+    'Logout': 'Cerrar sesión'
    };

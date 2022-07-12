@@ -4,6 +4,7 @@ import { withTranslation } from 'react-i18next'
 import Login from "../../Pages/Login/Login";
 import styles from "./Header.module.css";
 import { connect } from "react-redux";
+import { HOME_ROUTE, LINK_STYLE, LOGIN_ROUTE } from "../constatnts/constants";
  class Header extends Component {
   constructor() {
     super();
@@ -26,10 +27,10 @@ import { connect } from "react-redux";
             {/* all nav bar routing are linked here */}
             <ul className={styles.nav_links}>
               <li>
-                <Link to="/home">{t('Home')}</Link>
+                <Link to={HOME_ROUTE} style={LINK_STYLE}>{t('Home')}</Link>
               </li>
               <li>
-                <Link to="/login">{!this.props.name ?t('Login'): t('Logout')}</Link>
+                <Link to={LOGIN_ROUTE} style={LINK_STYLE}>{!this.props.email ?t('Login'): t('Logout')}</Link>
               </li>
               <li>
               <button onClick={() => changeLanguage('en')}>English</button>
@@ -46,7 +47,7 @@ import { connect } from "react-redux";
 
 const mapStateToProps = (state) => {
   return {
-    name: state.userDetails.name,
+    email: state.userDetails.email,
   };
 };
 const mapDispatchToProps = dispatch=>{

@@ -82,3 +82,17 @@ input[type="password"] {
 .quiz_option:hover {
   box-shadow: 2px 5px 3px rgba(0, 0, 0, 0.5);
 }
+.signup-alert{
+  margin: auto;
+  border: 1px solid grey;
+  width: 30rem;
+  
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin-top: 7rem;
+  padding: 1rem;
+}
+.signup-alert button{
+  width: 10rem;
+  font-size: 1.1rem;
+}
+

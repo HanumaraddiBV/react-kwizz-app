@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { CATEGORY_ROUTE, LINK_STYLE } from "../../components/constatnts/constants";
 import styles from "./Result.module.css";
 class Result extends Component {
   render() {
@@ -29,7 +30,7 @@ class Result extends Component {
             </ol>
           </div>
           <div className={styles.result_footer}>
-            <Link to="/category" className={`btn btn-error ${styles.exit_btn}`}>
+            <Link to={CATEGORY_ROUTE} style={LINK_STYLE} className={`btn btn-error ${styles.exit_btn}`}>
               Exit
             </Link>
           </div>

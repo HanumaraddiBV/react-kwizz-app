@@ -15,6 +15,7 @@ import { Suspense } from "react";
 import i18n from "./i18n/i18n";
 import { Quiz } from "./Pages/Quiz/Quiz";
 import Result from "./Pages/Results/Result";
+import { CATEGORY_ROUTE, HOME_ROUTE, LOGIN_ROUTE, QUIZ_ROUTE, RESULT_ROUTE, RULES_ROUTE, SIGNUP_ROUTE } from "./components/constatnts/constants";
 function App() {
   return (
     <div className="App">
@@ -22,13 +23,13 @@ function App() {
         <Suspense fallback="<h1>Loading</h1>">
           <Header />
           <Switch>
-            <Route exact path="/signup" component={SignInPage} />
-            <Route path="/home" component={Home} />
-            <Route path="/login" component={Login} />
-            <Route path="/category" component={Category} />
-            <Route path="/rules/:category" component={Rules} />
-            <Route path="/quiz/:category" component={Quiz} />
-            <Route path="/result" component={Result} />
+            <Route exact path={SIGNUP_ROUTE} component={SignInPage} />
+            <Route path={HOME_ROUTE} component={Home} />
+            <Route path={LOGIN_ROUTE} component={Login} />
+            <Route path={CATEGORY_ROUTE} component={Category} />
+            <Route path={RULES_ROUTE} component={Rules} />
+            <Route path={QUIZ_ROUTE} component={Quiz} />
+            <Route path={RESULT_ROUTE} component={Result} />
             <Route exact path='/' component={Home}/>
           </Switch>
         </Suspense>

@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect, Route, Switch, useHistory } from "react-router-dom";
 
 import Input from "../../components/GeneralComponents/Input";
 import SignInPage from "../SignUp/SignInPage";
 import axios from "axios";
+import { HOME_ROUTE, LINK_STYLE, SIGNUP_ROUTE } from "../../components/constatnts/constants";
+import { addUserDetails } from "../../Redux/Actions";
 export default function Login() {
   const { t } = useTranslation();
   const history = useHistory();
+  const dispatch = useDispatch();
   //getting the global store data using useSelector  hook
 
   const { userDetails } = useSelector((store) => store);
@@ -29,40 +32,45 @@ export default function Login() {
       .get("http://localhost:3001/users")
       .then((res) => {
         const userAllList = res.data;
-        console.log('userAllList:', userAllList)
+        // console.log("userAllList:", userAllList);
         let flag = false;
         for (let i = 0; i < userAllList.length; i++) {
           //confirming the both login page data with the data is already stored by signup page into the global state comparing the both of them
 
           console.log("userAllList[i]:", userAllList[i]);
-          
+
           if (
             userData.email == userAllList[i].email &&
             userData.password == userAllList[i].password
           ) {
             flag = true;
-           
-          } 
-         
+          }
         }
         if (flag) {
           setIsAuth(true);
           alert("You are successfully log in");
-          history.push("/home");
+          history.push(HOME_ROUTE);
+          dispatch(
+            addUserDetails({
+              name: "",
+              email: userData.email,
+              password: userData.password,
+            })
+          );
         } else {
           setIsAuth(false);
           alert(
             "Your entering a wrong credentials or you have to sign up first"
           );
-          history.push("/signup");
+          history.push(SIGNUP_ROUTE);
         }
       })
-      .catch((err) => {});
+      .catch((err) => {
+        alert(err.msg);
+      });
   };
 
-  // if(setIsAuth){
-  //   return(<Redirect to='/home'/>)
-  // }
+  
 
   return (
     <div className="auth-container">
@@ -102,7 +110,7 @@ export default function Login() {
       </form>
       <div className="signup-group">
         <div>
-          <Link to="/signup" className="signup-link">
+          <Link to={SIGNUP_ROUTE} className="signup-link" style={LINK_STYLE}>
             {t("Create New Account")}
           </Link>
         </div>

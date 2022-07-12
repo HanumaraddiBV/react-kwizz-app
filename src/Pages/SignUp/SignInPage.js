@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addUserDetails } from "../../Redux/Actions";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
+import { LINK_STYLE, LOGIN_ROUTE } from "../../components/constatnts/constants";
 const SignInPage = () => {
   const dispatch = useDispatch();
   const {t} = useTranslation();
@@ -59,7 +60,7 @@ const SignInPage = () => {
     })
    
     alert(`${registerData.name} you are successfully sign up`);
-    history.push('/login')
+    history.push(LOGIN_ROUTE)
     }
     
   };
@@ -148,7 +149,7 @@ const SignInPage = () => {
       </form>
       <div className={styles.signup_group}>
         <button>
-          <Link to="/login" className={styles.signup_link}>
+          <Link to={LOGIN_ROUTE} className={styles.signup_link} style={LINK_STYLE}>
             {t("Already have an account")}
           </Link>
         </button>

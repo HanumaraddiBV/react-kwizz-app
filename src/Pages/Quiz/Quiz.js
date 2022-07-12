@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
+import { LINK_STYLE, RESULT_ROUTE } from "../../components/constatnts/constants";
 import { questionData } from "../../Data/Questions";
 import { answereIsWrong, isAnswered } from "../../Redux/Actions";
 import styles from "./Quiz.module.css";
@@ -98,7 +99,7 @@ export const Quiz = () => {
           <div className={styles.quiz_footer}>
             {quesNum === 4 ? (
               <button className="btn btn-primary" disabled={nxtDisable}>
-                <Link to="/result">Result</Link>
+                <Link style={LINK_STYLE} to={RESULT_ROUTE}>Result</Link>
               </button>
             ) : (
               <button
