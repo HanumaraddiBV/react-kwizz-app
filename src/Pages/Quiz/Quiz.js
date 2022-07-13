@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
-import { LINK_STYLE, RESULT_ROUTE } from "../../components/constatnts/constants";
+import { Link, useHistory, useParams } from "react-router-dom";
+import {
+  LINK_STYLE,
+  RESULT_ROUTE,
+} from "../../components/constatnts/constants";
 import { questionData } from "../../Data/Questions";
 import { answereIsWrong, isAnswered } from "../../Redux/Actions";
 import styles from "./Quiz.module.css";
@@ -11,6 +14,9 @@ export const Quiz = () => {
   //keep record of question number
   const [quesNum, setQuesNum] = useState(0);
 
+  //extracting category name from useHistory hook
+  const history = useHistory();
+  console.log("history:", history.location.pathname.split("/")[2]);
   //to keep the selected option
   const [selected, setSelected] = useState();
 
@@ -28,7 +34,7 @@ export const Quiz = () => {
   // according to the question number getting the correct answer
   const correctAnswer = quizCategory.questions[quesNum].answer;
 
-  const optionHandler = (option) => {
+  const optionHandler = (option, questionDescription) => {
     //updateding the selected state to this option
     setSelected(option);
     //disabling the other option once user selected one option
@@ -41,15 +47,25 @@ export const Quiz = () => {
       //dispatching the action and payload according to the condition
       dispatch(
         isAnswered({
-          result: { correctAns: correctAnswer, selectedOption: option },
+          result: {
+            correctAns: correctAnswer,
+            selectedOption: option,
+            questionDescription,
+          },
           totalScore: 10,
+          categoryName: history.location.pathname.split("/")[2],
         })
       );
     } else {
       dispatch(
         answereIsWrong({
-          result: { correctAns: correctAnswer, selectedOption: option },
+          result: {
+            correctAns: correctAnswer,
+            selectedOption: option,
+            questionDescription,
+          },
           totalScore: 0,
+          categoryName: history.location.pathname.split("/")[2],
         })
       );
     }
@@ -85,7 +101,12 @@ export const Quiz = () => {
               return (
                 <button
                   key={index}
-                  onClick={() => optionHandler(item)}
+                  onClick={() =>
+                    optionHandler(
+                      item,
+                      quizCategory.questions[quesNum].question
+                    )
+                  }
                   className={`${
                     selected === item ? `${styles.sel_option}` : ""
                   } quiz_option`}
@@ -99,7 +120,9 @@ export const Quiz = () => {
           <div className={styles.quiz_footer}>
             {quesNum === 4 ? (
               <button className="btn btn-primary" disabled={nxtDisable}>
-                <Link style={LINK_STYLE} to={RESULT_ROUTE}>Result</Link>
+                <Link style={LINK_STYLE} to={RESULT_ROUTE}>
+                  Result
+                </Link>
               </button>
             ) : (
               <button

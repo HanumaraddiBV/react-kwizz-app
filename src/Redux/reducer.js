@@ -1,17 +1,14 @@
 import * as actionTypes from "./ActionTypes";
 const init = {
   userDetails: {
-    name: null,
-    email: null,
-    password: null,
-  },
-  loginUser:{
+    id:null,
     name: null,
     email: null,
     password: null,
   },
   result: [],
   totalScore: 0,
+  categoryName:null,
 };
 
 export const userReducer = (state = init, action) => {
@@ -31,7 +28,23 @@ export const userReducer = (state = init, action) => {
         ...state,
         result: [...state.result, action.payload.result],
         totalScore: state.totalScore + action.payload.totalScore,
+        categoryName: action.payload.categoryName
       };
+    case actionTypes.USER_LOGIN:
+      if (state.userDetails.name == null) {
+        return {
+          ...state,
+          userDetails: {
+            ...state.userDetails,
+            id: action.payload.id,
+            name: action.payload.name,
+            email: action.payload.email,
+            password: action.payload.password,
+          },
+        };
+      } else {
+        return state;
+      }
     case actionTypes.SIGN_OUT:
       return {
         ...state,
@@ -42,6 +55,13 @@ export const userReducer = (state = init, action) => {
         },
         result: [],
         totalScore: 0,
+      };
+    case actionTypes.WRONG_ANSWER:
+      return {
+        ...state,
+        result: [...state.result, action.payload.result],
+        totalScore: state.totalScore + action.payload.totalScore,
+        categoryName: action.payload.categoryName
       };
     default:
       return state;

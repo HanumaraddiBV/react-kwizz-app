@@ -9,7 +9,7 @@ const Rules = () => {
   const { category } = useParams();
   const { t } = useTranslation();
   const history = useHistory();
-  const { userDetails } = useSelector((store) => store);
+  const { userDetails } = useSelector((store) => store.userInfo);
 
   return userDetails.email ? (
     <div>

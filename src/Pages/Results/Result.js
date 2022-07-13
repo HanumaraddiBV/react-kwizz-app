@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { CATEGORY_ROUTE, LINK_STYLE } from "../../components/constatnts/constants";
+import {
+  CATEGORY_ROUTE,
+  LINK_STYLE,
+} from "../../components/constatnts/constants";
+import { addResultToProgressArr } from "../../Redux/Actions";
 import styles from "./Result.module.css";
 class Result extends Component {
   render() {
@@ -13,6 +17,7 @@ class Result extends Component {
             <ol>
               {this.props.result.map((item, index) => (
                 <li key={index}>
+                  <h2>{item.questionDescription}</h2>
                   <p
                     className={
                       item.correctAns === item.selectedOption
@@ -29,8 +34,22 @@ class Result extends Component {
               ))}
             </ol>
           </div>
-          <div className={styles.result_footer}>
-            <Link to={CATEGORY_ROUTE} style={LINK_STYLE} className={`btn btn-error ${styles.exit_btn}`}>
+          <div
+            className={styles.result_footer}
+            onClick={() =>
+              this.props.handleResult({
+                userId: this.props.userId,
+                result: this.props.result,
+                totalScore: this.props.totalScore,
+                categoryName: this.props.categoryName
+              })
+            }
+          >
+            <Link
+              to={CATEGORY_ROUTE}
+              style={LINK_STYLE}
+              className={`btn btn-error ${styles.exit_btn}`}
+            >
               Exit
             </Link>
           </div>
@@ -42,11 +61,15 @@ class Result extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    result: state.result,
-    totalScore: state.totalScore,
+    userId: state.userInfo.userDetails.id,
+    result: state.userInfo.result,
+    totalScore: state.userInfo.totalScore,
+    categoryName:state.userInfo.categoryName
   };
 };
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    handleResult: (payload) => dispatch(addResultToProgressArr(payload)),
+  };
 };
-export default connect(mapStateToProps,mapDispatchToProps)(Result);
+export default connect(mapStateToProps, mapDispatchToProps)(Result);

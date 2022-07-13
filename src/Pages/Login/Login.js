@@ -11,14 +11,14 @@ import {
   LINK_STYLE,
   SIGNUP_ROUTE,
 } from "../../components/constatnts/constants";
-import { addUserDetails } from "../../Redux/Actions";
+import { addUserDetails, isUserIsLogIn } from "../../Redux/Actions";
 export default function Login() {
   const { t } = useTranslation();
   const history = useHistory();
   const dispatch = useDispatch();
   //getting the global store data using useSelector  hook
 
-  const { userDetails } = useSelector((store) => store);
+  const { userDetails } = useSelector((store) => store.userInfo);
   console.log("userDetails:", userDetails);
   //destructuring the email and password from userDetails
   const { email, password } = userDetails;
@@ -41,6 +41,7 @@ export default function Login() {
         let flag = false;
         let isEmail = true;
         let isPassword = true;
+        let loginDetailsOfUser;
         for (let i = 0; i < userAllList.length; i++) {
           //confirming the both login page data with the data is already stored by signup page into the global state comparing the both of them
 
@@ -49,6 +50,7 @@ export default function Login() {
             userData.password == userAllList[i].password
           ) {
             flag = true;
+            loginDetailsOfUser = userAllList[i];
           } else if (
             userData.email == userAllList[i].email &&
             userData.password !== userAllList[i].password
@@ -65,13 +67,7 @@ export default function Login() {
           setIsAuth(true);
           alert("You are successfully log in");
           history.push(HOME_ROUTE);
-          dispatch(
-            addUserDetails({
-              name: "",
-              email: userData.email,
-              password: userData.password,
-            })
-          );
+          dispatch(isUserIsLogIn(loginDetailsOfUser));
         } else if (!isEmail) {
           alert("You have entered wrong email. Please check your email");
         } else if (!isPassword) {

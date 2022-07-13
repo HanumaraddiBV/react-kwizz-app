@@ -33,3 +33,11 @@ export const isUserSignOut = () => {
     value: null,
   };
 };
+
+
+export const addResultToProgressArr = (payload)=>{
+  return{
+    type: actionTypes.ADD_RESULT,
+    payload
+  }
+}

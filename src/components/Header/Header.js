@@ -47,7 +47,7 @@ import { HOME_ROUTE, LINK_STYLE, LOGIN_ROUTE } from "../constatnts/constants";
 
 const mapStateToProps = (state) => {
   return {
-    email: state.userDetails.email,
+    email: state.userInfo.userDetails.email,
   };
 };
 const mapDispatchToProps = dispatch=>{

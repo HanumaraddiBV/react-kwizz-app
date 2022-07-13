@@ -22,7 +22,7 @@ class CategoryItem extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    email: state.userDetails.email,
+    email: state.userInfo.userDetails.email,
   };
 };
 export default connect(mapStateToProps)(CategoryItem);
