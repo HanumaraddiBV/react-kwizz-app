@@ -18,6 +18,7 @@ export const userReducer = (state = init, action) => {
         ...state,
         userDetails: {
           ...state.userDetails,
+          id: action.payload.id,
           name: action.payload.name,
           email: action.payload.email,
           password: action.payload.password,
@@ -62,6 +63,14 @@ export const userReducer = (state = init, action) => {
         result: [...state.result, action.payload.result],
         totalScore: state.totalScore + action.payload.totalScore,
         categoryName: action.payload.categoryName
+      };
+
+      case actionTypes.UPDATE_RESULT:
+      return {
+        ...state,
+        result: [],
+        totalScore: 0,
+        categoryName: ''
       };
     default:
       return state;

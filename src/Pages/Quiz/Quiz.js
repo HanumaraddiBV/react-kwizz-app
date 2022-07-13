@@ -119,7 +119,7 @@ export const Quiz = () => {
           </div>
           <div className={styles.quiz_footer}>
             {quesNum === 4 ? (
-              <button className="btn btn-primary" disabled={nxtDisable}>
+              <button className="btn btn-primary" disabled={nxtDisable} >
                 <Link style={LINK_STYLE} to={RESULT_ROUTE}>
                   Result
                 </Link>

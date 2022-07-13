@@ -11,7 +11,7 @@ import {
   LINK_STYLE,
   SIGNUP_ROUTE,
 } from "../../components/constatnts/constants";
-import { addUserDetails, isUserIsLogIn } from "../../Redux/Actions";
+import { addUserDetails, isUserIsLogIn, isUserSignOut } from "../../Redux/Actions";
 export default function Login() {
   const { t } = useTranslation();
   const history = useHistory();
@@ -85,9 +85,15 @@ export default function Login() {
       });
   };
 
+  const handleLogOut = ()=>{
+    alert('You are successfully log out. Thank You,Visit again')
+    dispatch(isUserSignOut())
+    history.push(HOME_ROUTE)
+  }
+
   return (
     <>
-      {!userDetails.email ? (
+      {!userDetails.id ? (
         <div className="auth-container">
           <h2 className="form-heading center-text">{t("Login")}</h2>
           <form onSubmit={loginHandler}>
@@ -136,7 +142,10 @@ export default function Login() {
           </div>
         </div>
       ) : (
-        <div>Log out</div>
+        <div className='signup-alert'>
+          <h3>If You want to log out from our app you can click below button</h3>
+          <button className={`btn btn-primary`} onClick={handleLogOut}>Log Out</button>
+        </div>
       )}
     </>
   );

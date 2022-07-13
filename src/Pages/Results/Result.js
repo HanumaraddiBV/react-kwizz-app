@@ -5,7 +5,11 @@ import {
   CATEGORY_ROUTE,
   LINK_STYLE,
 } from "../../components/constatnts/constants";
-import { addResultToProgressArr } from "../../Redux/Actions";
+import {
+  addResultToProgressArr,
+  updatedProgressReport,
+  updateResultAgainEmpty,
+} from "../../Redux/Actions";
 import styles from "./Result.module.css";
 class Result extends Component {
   render() {
@@ -36,14 +40,17 @@ class Result extends Component {
           </div>
           <div
             className={styles.result_footer}
-            onClick={() =>
+            onClick={() => {
               this.props.handleResult({
                 userId: this.props.userId,
                 result: this.props.result,
                 totalScore: this.props.totalScore,
-                categoryName: this.props.categoryName
-              })
-            }
+                categoryName: this.props.categoryName,
+                quizResultInfo: this.props.quizResultInfo,
+              });
+
+              this.props.toUpdateResultToEmpty();
+            }}
           >
             <Link
               to={CATEGORY_ROUTE}
@@ -61,15 +68,17 @@ class Result extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    userId: state.userInfo.userDetails.id,
+    userId: state.userInfo.userDetails,
     result: state.userInfo.result,
     totalScore: state.userInfo.totalScore,
-    categoryName:state.userInfo.categoryName
+    categoryName: state.userInfo.categoryName,
+    quizResultInfo: state.userProgressInfo.progressData,
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleResult: (payload) => dispatch(addResultToProgressArr(payload)),
+    handleResult: (payload) => dispatch(updatedProgressReport(payload)),
+    toUpdateResultToEmpty: () => dispatch(updateResultAgainEmpty()),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Result);

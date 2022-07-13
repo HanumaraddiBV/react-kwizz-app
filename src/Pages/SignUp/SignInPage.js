@@ -64,10 +64,11 @@ const SignInPage = () => {
 
         axios
           .post("http://localhost:3001/users", {
-            id: Math.floor(Math.random() * 10),
+            id: Math.floor(Math.random() * 20),
             name: registerData.name,
             email: registerData.email,
             password: registerData.password,
+            report :[]
           })
           .then((res) => {
             // console.log('res:', res)
