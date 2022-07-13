@@ -6,7 +6,11 @@ import { Link, Redirect, Route, Switch, useHistory } from "react-router-dom";
 import Input from "../../components/GeneralComponents/Input";
 import SignInPage from "../SignUp/SignInPage";
 import axios from "axios";
-import { HOME_ROUTE, LINK_STYLE, SIGNUP_ROUTE } from "../../components/constatnts/constants";
+import {
+  HOME_ROUTE,
+  LINK_STYLE,
+  SIGNUP_ROUTE,
+} from "../../components/constatnts/constants";
 import { addUserDetails } from "../../Redux/Actions";
 export default function Login() {
   const { t } = useTranslation();
@@ -15,6 +19,7 @@ export default function Login() {
   //getting the global store data using useSelector  hook
 
   const { userDetails } = useSelector((store) => store);
+  console.log("userDetails:", userDetails);
   //destructuring the email and password from userDetails
   const { email, password } = userDetails;
 
@@ -34,16 +39,26 @@ export default function Login() {
         const userAllList = res.data;
         // console.log("userAllList:", userAllList);
         let flag = false;
+        let isEmail = true;
+        let isPassword = true;
         for (let i = 0; i < userAllList.length; i++) {
           //confirming the both login page data with the data is already stored by signup page into the global state comparing the both of them
-
-          console.log("userAllList[i]:", userAllList[i]);
 
           if (
             userData.email == userAllList[i].email &&
             userData.password == userAllList[i].password
           ) {
             flag = true;
+          } else if (
+            userData.email == userAllList[i].email &&
+            userData.password !== userAllList[i].password
+          ) {
+            isPassword = false;
+          } else if (
+            userData.password == userAllList[i].password &&
+            userData.email !== userAllList[i].email
+          ) {
+            isEmail = false;
           }
         }
         if (flag) {
@@ -57,6 +72,10 @@ export default function Login() {
               password: userData.password,
             })
           );
+        } else if (!isEmail) {
+          alert("You have entered wrong email. Please check your email");
+        } else if (!isPassword) {
+          alert("You have entered wrong password. Please check your password");
         } else {
           setIsAuth(false);
           alert(
@@ -70,52 +89,60 @@ export default function Login() {
       });
   };
 
-  
-
   return (
-    <div className="auth-container">
-      <h2 className="form-heading center-text">{t("Login")}</h2>
-      <form onSubmit={loginHandler}>
-        <div className="input-group">
-          <Input
-            inputType={"email"}
-            name={"email"}
-            title={t("Email")}
-            className="textfield"
-            required
-            placeholder={t("Enter Your Email")}
-            autoComplete="off"
-            id="email"
-            val={userData.email}
-            onChange={handleChange}
-          />
+    <>
+      {!userDetails.email ? (
+        <div className="auth-container">
+          <h2 className="form-heading center-text">{t("Login")}</h2>
+          <form onSubmit={loginHandler}>
+            <div className="input-group">
+              <Input
+                inputType={"email"}
+                name={"email"}
+                title={t("Email")}
+                className="textfield"
+                required
+                placeholder={t("Enter Your Email")}
+                autoComplete="off"
+                id="email"
+                val={userData.email}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="input-group">
+              <Input
+                inputType={"password"}
+                name={"password"}
+                title={t("Password")}
+                className="textfield"
+                required
+                placeholder={t("Enter Your Password")}
+                autoComplete="off"
+                id="password"
+                val={userData.password}
+                onChange={handleChange}
+              />
+            </div>
+            <button className="btn btn-primary" type="submit">
+              {t("Login")}
+            </button>
+          </form>
+          <div className="signup-group">
+            <div>
+              <Link
+                to={SIGNUP_ROUTE}
+                className="signup-link"
+                style={LINK_STYLE}
+              >
+                {t("Create New Account")}
+              </Link>
+            </div>
+          </div>
         </div>
-        <div className="input-group">
-          <Input
-            inputType={"password"}
-            name={"password"}
-            title={t("Password")}
-            className="textfield"
-            required
-            placeholder={t("Enter Your Password")}
-            autoComplete="off"
-            id="password"
-            val={userData.password}
-            onChange={handleChange}
-          />
-        </div>
-        <button className="btn btn-primary" type="submit">
-          {t("Login")}
-        </button>
-      </form>
-      <div className="signup-group">
-        <div>
-          <Link to={SIGNUP_ROUTE} className="signup-link" style={LINK_STYLE}>
-            {t("Create New Account")}
-          </Link>
-        </div>
-      </div>
-    </div>
+      ) : (
+        <div>Log out</div>
+      )}
+    </>
   );
 }
 

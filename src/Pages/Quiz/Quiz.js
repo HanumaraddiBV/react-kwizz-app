@@ -69,11 +69,11 @@ export const Quiz = () => {
                 Question: <strong>{quesNum + 1}/5</strong>
               </span>
             </div>
-            <div className={styles.quiz_score}>
+            {/* <div className={styles.quiz_score}>
               <span>
                 Score: <strong>{totalScore}</strong>
               </span>
-            </div>
+            </div> */}
           </div>
           <div className={styles.quiz_question}>
             <p>

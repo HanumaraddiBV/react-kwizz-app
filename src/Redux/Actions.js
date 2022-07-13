@@ -1,23 +1,35 @@
-import { ADD_USER_DETAILS, ANSWER, WRONG_ANSWER } from "./ActionTypes";
-
+import * as actionTypes from "./ActionTypes";
 export const addUserDetails = (payload) => {
   console.log("payload:", payload);
   return {
-    type: ADD_USER_DETAILS,
+    type: actionTypes.ADD_USER_DETAILS,
     payload: payload,
   };
 };
 
 export const isAnswered = (payload) => {
   return {
-    type: ANSWER,
+    type: actionTypes.ANSWER,
     payload,
   };
 };
 
+export const isUserIsLogIn = (payload) => {
+  return {
+    type: actionTypes.USER_LOGIN,
+    payload,
+  };
+};
 export const answereIsWrong = (payload) => {
   return {
-    type: WRONG_ANSWER,
+    type: actionTypes.WRONG_ANSWER,
     payload,
+  };
+};
+
+export const isUserSignOut = () => {
+  return {
+    type: actionTypes.SIGN_OUT,
+    value: null,
   };
 };

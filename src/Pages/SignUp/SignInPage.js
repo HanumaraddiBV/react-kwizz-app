@@ -7,12 +7,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { addUserDetails } from "../../Redux/Actions";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
+import validator from "validator";
 import { LINK_STYLE, LOGIN_ROUTE } from "../../components/constatnts/constants";
 const SignInPage = () => {
   const dispatch = useDispatch();
-  const {t} = useTranslation();
-  const history = useHistory()
-  //creating state for user details 
+  const { t } = useTranslation();
+  const history = useHistory();
+  //creating state for user details
   const [registerData, setRegisterData] = useState({
     name: "",
     email: "",
@@ -26,7 +27,7 @@ const SignInPage = () => {
   //this state tells the passwords are matching are not
   const [msg, setMsg] = useState(false);
 
-  //setting the states 
+  //setting the states
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -39,30 +40,47 @@ const SignInPage = () => {
     //checking the both passwords
     if (registerData.password !== registerData.confirmPass) {
       setMsg(true);
-      alert('Please check your password once')
+      alert("Please check your password once");
     } else {
       setMsg(false);
       // console.log(registerData);
-    //dispatching the data into reducer 
-    axios.post('http://localhost:3001/users',{
-      id: Math.floor(Math.random()*10),
-      name:registerData.name,
-      email: registerData.email,
-      password: registerData.password
-    }).then((res)=> {
-      // console.log('res:', res)
-      const userInfo = res.data
-      dispatch(addUserDetails(userInfo));
-    }).catch(err=>{
-    console.log('err:', err)
-    
 
-    })
-   
-    alert(`${registerData.name} you are successfully sign up`);
-    history.push(LOGIN_ROUTE)
+      //validating name
+      if (registerData.name.length <= 0) {
+        alert("Your name should be atleast one character");
+      }
+
+      //validating password to make sure that password has to be strong
+      else if (
+        !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(\W|_)).{5,}$/.test(
+          registerData.password
+        )
+      ) {
+        alert(
+          "Your password should be strong. Atleast have one special character,one Uppercase letter,one lowercase letter and one number"
+        );
+      } else {
+        //dispatching the data into reducer
+
+        axios
+          .post("http://localhost:3001/users", {
+            id: Math.floor(Math.random() * 10),
+            name: registerData.name,
+            email: registerData.email,
+            password: registerData.password,
+          })
+          .then((res) => {
+            // console.log('res:', res)
+            const userInfo = res.data;
+            dispatch(addUserDetails(userInfo));
+          })
+          .catch((err) => {
+            console.log("err:", err);
+          });
+        alert(`${registerData.name} you are successfully sign up`);
+        history.push(LOGIN_ROUTE);
+      }
     }
-    
   };
 
   //logic for password visibility
@@ -72,7 +90,7 @@ const SignInPage = () => {
   };
   return (
     <div className="auth-container">
-      <h2 className="center-text">{t('Signup')}</h2>
+      <h2 className="center-text">{t("Signup")}</h2>
       <form onSubmit={isRegister}>
         <div className="input-group">
           <Input
@@ -92,7 +110,7 @@ const SignInPage = () => {
           <Input
             inputType={"email"}
             name={"email"}
-            title={t('Email')}
+            title={t("Email")}
             className="textfield"
             required
             placeholder={t("Enter Your Email")}
@@ -145,11 +163,15 @@ const SignInPage = () => {
             {t("Password and ConfirmPassword don't Match")}
           </span>
         )}
-        <button className="btn btn-primary">{t('Create New Account')}</button>
+        <button className="btn btn-primary">{t("Create New Account")}</button>
       </form>
       <div className={styles.signup_group}>
         <button>
-          <Link to={LOGIN_ROUTE} className={styles.signup_link} style={LINK_STYLE}>
+          <Link
+            to={LOGIN_ROUTE}
+            className={styles.signup_link}
+            style={LINK_STYLE}
+          >
             {t("Already have an account")}
           </Link>
         </button>
