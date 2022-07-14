@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { withTranslation } from 'react-i18next';
 
 import ReactImage from '../../Images/ReactImage.png'
-import JavaLogo from '../../Images/JavaLogo.jpg'
-import JavascriptLogo from '../../Images/JavascriptLogo.png'
+import JavaLogo from '../../Images/JavaImgLogo.jpg'
+import JavascriptLogo from '../../Images/JavascriptImgLogo.jpg'
 import CategoryItem from '../CategoryList/CategoryItem';
 import styles from "./Category.module.css";
  class Category extends Component {
