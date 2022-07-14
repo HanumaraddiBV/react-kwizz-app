@@ -4,7 +4,7 @@ import { withTranslation } from 'react-i18next'
 import Login from "../../Pages/Login/Login";
 import styles from "./Header.module.css";
 import { connect } from "react-redux";
-import { HOME_ROUTE, LINK_STYLE, LOGIN_ROUTE } from "../constatnts/constants";
+import { ADMIN_ROUTE, HOME_ROUTE, LINK_STYLE, LOGIN_ROUTE } from "../constatnts/constants";
  class Header extends Component {
   constructor() {
     super();
@@ -30,6 +30,9 @@ import { HOME_ROUTE, LINK_STYLE, LOGIN_ROUTE } from "../constatnts/constants";
                 <Link to={HOME_ROUTE} style={LINK_STYLE}>{t('Home')}</Link>
               </li>
               <li>
+                <Link to={ADMIN_ROUTE} style={LINK_STYLE}>{t('Admin')}</Link>
+              </li>
+              <li>
                 <Link to={LOGIN_ROUTE} style={LINK_STYLE}>{!this.props.email ?t('Login'): t('Logout')}</Link>
               </li>
               <li>
@@ -37,6 +40,7 @@ import { HOME_ROUTE, LINK_STYLE, LOGIN_ROUTE } from "../constatnts/constants";
        
               </li>
               <li> <button onClick={() => changeLanguage('sp')}>Spanish</button></li>
+              <li> <button onClick={() => changeLanguage('ar')}>Arabic</button></li>
             </ul>
           </nav>
         </header>

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import {
   CATEGORY_ROUTE,
   LINK_STYLE,
+  REPORT_ROUTE,
 } from "../../components/constatnts/constants";
 import {
   addResultToProgressArr,
@@ -12,6 +13,16 @@ import {
 } from "../../Redux/Actions";
 import styles from "./Result.module.css";
 class Result extends Component {
+  componentDidMount() {
+    this.props.handleResult({
+      userId: this.props.userId,
+      result: this.props.result,
+      totalScore: this.props.totalScore,
+      categoryName: this.props.categoryName,
+      quizResultInfo: this.props.quizResultInfo,
+    });
+  }
+  componentWillUnmount() {}
   render() {
     return (
       <div>
@@ -41,14 +52,6 @@ class Result extends Component {
           <div
             className={styles.result_footer}
             onClick={() => {
-              this.props.handleResult({
-                userId: this.props.userId,
-                result: this.props.result,
-                totalScore: this.props.totalScore,
-                categoryName: this.props.categoryName,
-                quizResultInfo: this.props.quizResultInfo,
-              });
-
               this.props.toUpdateResultToEmpty();
             }}
           >
@@ -60,6 +63,18 @@ class Result extends Component {
               Exit
             </Link>
           </div>
+          <div>
+            <button
+              className={`btn btn-primary`}
+              onClick={() => {
+                this.props.toUpdateResultToEmpty();
+              }}
+            >
+              <Link to={REPORT_ROUTE} style={LINK_STYLE}>
+                View Progress Report
+              </Link>
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -68,7 +83,7 @@ class Result extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    userId: state.userInfo.userDetails,
+    userId: state.userInfo,
     result: state.userInfo.result,
     totalScore: state.userInfo.totalScore,
     categoryName: state.userInfo.categoryName,

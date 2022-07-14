@@ -10,6 +10,7 @@ import {
   HOME_ROUTE,
   LINK_STYLE,
   SIGNUP_ROUTE,
+  USERS_API,
 } from "../../components/constatnts/constants";
 import { addUserDetails, isUserIsLogIn, isUserSignOut } from "../../Redux/Actions";
 export default function Login() {
@@ -34,7 +35,7 @@ export default function Login() {
   const loginHandler = (event) => {
     event.preventDefault();
     axios
-      .get("http://localhost:3001/users")
+      .get(USERS_API)
       .then((res) => {
         const userAllList = res.data;
         // console.log("userAllList:", userAllList);
@@ -66,8 +67,8 @@ export default function Login() {
         if (flag) {
           setIsAuth(true);
           alert("You are successfully log in");
-          history.push(HOME_ROUTE);
           dispatch(isUserIsLogIn(loginDetailsOfUser));
+          history.push(HOME_ROUTE);
         } else if (!isEmail) {
           alert("You have entered wrong email. Please check your email");
         } else if (!isPassword) {

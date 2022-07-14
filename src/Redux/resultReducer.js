@@ -12,6 +12,11 @@ export const resultReducer = (state = initialState, action) => {
         ...state,
         progressData: [...state.progressData, action.payload],
       };
+      case actionTypes.SIGN_OUT:
+        return {
+          ...state,
+          progressData: [],
+        };
     default:
       return state;
   }

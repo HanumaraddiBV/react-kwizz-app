@@ -15,7 +15,9 @@ import { Suspense } from "react";
 import i18n from "./i18n/i18n";
 import { Quiz } from "./Pages/Quiz/Quiz";
 import Result from "./Pages/Results/Result";
-import { CATEGORY_ROUTE, HOME_ROUTE, LOGIN_ROUTE, QUIZ_ROUTE, RESULT_ROUTE, RULES_ROUTE, SIGNUP_ROUTE } from "./components/constatnts/constants";
+import { ADMIN_ROUTE, CATEGORY_ROUTE, HOME_ROUTE, LOGIN_ROUTE, QUIZ_ROUTE, REPORT_ROUTE, RESULT_ROUTE, RULES_ROUTE, SIGNUP_ROUTE } from "./components/constatnts/constants";
+import ProgressPage from "./Pages/ProgressPage/ProgressPage";
+import adminAuth from "./Pages/AdminPage/adminAuth";
 function App() {
   return (
     <div className="App">
@@ -30,6 +32,8 @@ function App() {
             <Route path={RULES_ROUTE} component={Rules} />
             <Route path={QUIZ_ROUTE} component={Quiz} />
             <Route path={RESULT_ROUTE} component={Result} />
+            <Route path={REPORT_ROUTE} component={ProgressPage}/>
+            <Route path={ADMIN_ROUTE} component={adminAuth}/>
             <Route exact path='/' component={Home}/>
           </Switch>
         </Suspense>

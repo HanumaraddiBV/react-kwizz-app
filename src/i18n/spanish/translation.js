@@ -25,5 +25,6 @@ export const TRANSLATIONS_SP = {
     'Fifth_Point':'Después de responder las 5 preguntas, llegará a la página de resultados donde podrá ver su puntuación.',
     'Go Back':'Regresa',
     'Start Playing':'Empezar a jugar',
-    'Logout': 'Cerrar sesión'
+    'Logout': 'Cerrar sesión',
+    'Admin': 'Administradora'
    };

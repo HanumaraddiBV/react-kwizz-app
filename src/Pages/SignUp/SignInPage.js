@@ -8,7 +8,7 @@ import { addUserDetails } from "../../Redux/Actions";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import validator from "validator";
-import { LINK_STYLE, LOGIN_ROUTE } from "../../components/constatnts/constants";
+import { HOME_ROUTE, LINK_STYLE, LOGIN_ROUTE } from "../../components/constatnts/constants";
 const SignInPage = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -79,7 +79,7 @@ const SignInPage = () => {
             console.log("err:", err);
           });
         alert(`${registerData.name} you are successfully sign up`);
-        history.push(LOGIN_ROUTE);
+        history.push(HOME_ROUTE);
       }
     }
   };

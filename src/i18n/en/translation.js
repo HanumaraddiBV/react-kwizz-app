@@ -25,6 +25,6 @@ export const TRANSLATIONS_EN = {
     'Fifth_Point':' After answering all 5 questions you will reach on the result page where you can see your score.',
     'Go Back':'Go Back',
     'Start Playing':'Start Playing',
-     'Logout': 'Logout'
-
+     'Logout': 'Logout',
+      'Admin':'Admin'
    };

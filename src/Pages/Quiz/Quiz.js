@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory, useParams } from "react-router-dom";
 import {
@@ -6,14 +6,25 @@ import {
   RESULT_ROUTE,
 } from "../../components/constatnts/constants";
 import { questionData } from "../../Data/Questions";
-import { answereIsWrong, isAnswered } from "../../Redux/Actions";
+import {
+  addResultToProgressArr,
+  answereIsWrong,
+  isAnswered,
+  updatedProgressReport,
+} from "../../Redux/Actions";
 import styles from "./Quiz.module.css";
 export const Quiz = () => {
-  const { result, totalScore } = useSelector((store) => store);
+  const { categoryName, totalScore, result } = useSelector(
+    (store) => store.userInfo
+  );
+
   const dispatch = useDispatch();
   //keep record of question number
   const [quesNum, setQuesNum] = useState(0);
 
+  const timeRef = useRef();
+  //creating state for timer
+  const [timer, setTimer] = useState(20);
   //extracting category name from useHistory hook
   const history = useHistory();
   console.log("history:", history.location.pathname.split("/")[2]);
@@ -70,8 +81,24 @@ export const Quiz = () => {
       );
     }
   };
+
+  // useEffect(() => {
+
+  //   setCounter()
+  // },[]);
+
+  // const setCounter = ()=>{
+  //   timeRef.current = setInterval(() => {
+  //     setTimer((p) => p-1);
+  //   }, 1000);
+
+  //   }
+  const addResultToState = () => {
+    dispatch(addResultToProgressArr({categoryName,totalScore,result}));
+  };
   const nextHandler = () => {
     setQuesNum(quesNum + 1);
+
     setDisableOption(false);
     setNxtDisable(true);
   };
@@ -85,15 +112,16 @@ export const Quiz = () => {
                 Question: <strong>{quesNum + 1}/5</strong>
               </span>
             </div>
-            {/* <div className={styles.quiz_score}>
+            <div className={styles.quiz_score}>
               <span>
-                Score: <strong>{totalScore}</strong>
+                Timer: <strong>{timer}</strong>
               </span>
-            </div> */}
+            </div>
           </div>
           <div className={styles.quiz_question}>
             <p>
-              <b>{quizCategory.questions[quesNum].question}</b>
+              <span>{quesNum + 1}.</span>
+              <b> {quizCategory.questions[quesNum].question}</b>
             </p>
           </div>
           <div className={styles.quiz_options}>
@@ -119,7 +147,11 @@ export const Quiz = () => {
           </div>
           <div className={styles.quiz_footer}>
             {quesNum === 4 ? (
-              <button className="btn btn-primary" disabled={nxtDisable} >
+              <button
+                className="btn btn-primary"
+                disabled={nxtDisable}
+                onClick={addResultToState}
+              >
                 <Link style={LINK_STYLE} to={RESULT_ROUTE}>
                   Result
                 </Link>
