@@ -26,12 +26,12 @@
           "result": [
             {
               "correctAns": "Virtual DOM",
-              "selectedOption": "Origin DOM",
+              "selectedOption": "Both",
               "questionDescription": "\tWhich of the following is used in React.js to increase performance? "
             },
             {
               "correctAns": "user interface framework",
-              "selectedOption": "both a and b",
+              "selectedOption": "user interface framework",
               "questionDescription": "\tWhat is ReactJS?"
             },
             {
@@ -46,7 +46,77 @@
             },
             {
               "correctAns": "Javascript",
-              "selectedOption": "Javascript",
+              "selectedOption": "Java",
+              "questionDescription": "In which language is React.js written?"
+            }
+          ]
+        },
+        {
+          "categoryName": "React",
+          "totalScore": 20,
+          "result": [
+            {
+              "correctAns": "Virtual DOM",
+              "selectedOption": "Both",
+              "questionDescription": "\tWhich of the following is used in React.js to increase performance? "
+            },
+            {
+              "correctAns": "user interface framework",
+              "selectedOption": "user interface framework",
+              "questionDescription": "\tWhat is ReactJS?"
+            },
+            {
+              "correctAns": "props",
+              "selectedOption": "PropTypes",
+              "questionDescription": "Identify the one which is used to pass data to components from outside"
+            },
+            {
+              "correctAns": "Jordan Walke",
+              "selectedOption": "Jordan Walke",
+              "questionDescription": "Who created React.js?"
+            },
+            {
+              "correctAns": "Javascript",
+              "selectedOption": "Java",
+              "questionDescription": "In which language is React.js written?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "name": "reddyy",
+      "email": "a@a.com",
+      "password": "1234@Hn",
+      "report": [
+        {
+          "categoryName": "React",
+          "totalScore": 10,
+          "result": [
+            {
+              "correctAns": "Virtual DOM",
+              "selectedOption": "Virtual DOM",
+              "questionDescription": "\tWhich of the following is used in React.js to increase performance? "
+            },
+            {
+              "correctAns": "user interface framework",
+              "selectedOption": "both a and b",
+              "questionDescription": "\tWhat is ReactJS?"
+            },
+            {
+              "correctAns": "props",
+              "selectedOption": "setState",
+              "questionDescription": "Identify the one which is used to pass data to components from outside"
+            },
+            {
+              "correctAns": "Jordan Walke",
+              "selectedOption": "Tim lee",
+              "questionDescription": "Who created React.js?"
+            },
+            {
+              "correctAns": "Javascript",
+              "selectedOption": "Java",
               "questionDescription": "In which language is React.js written?"
             }
           ]
@@ -67,7 +137,7 @@
             },
             {
               "correctAns": "props",
-              "selectedOption": "PropTypes",
+              "selectedOption": "setState",
               "questionDescription": "Identify the one which is used to pass data to components from outside"
             },
             {
@@ -79,6 +149,68 @@
               "correctAns": "Javascript",
               "selectedOption": "Java",
               "questionDescription": "In which language is React.js written?"
+            }
+          ]
+        },
+        {
+          "categoryName": "Java",
+          "totalScore": 10,
+          "result": [
+            {
+              "correctAns": "8",
+              "selectedOption": "7",
+              "questionDescription": "Number of primitive data types in Java are?"
+            },
+            {
+              "correctAns": "32 and 64",
+              "selectedOption": "32 and 64",
+              "questionDescription": "What is the size of float and double in java?"
+            },
+            {
+              "correctAns": "int to long",
+              "selectedOption": "long to int",
+              "questionDescription": "Automatic type conversion is possible in which of the possible cases?"
+            },
+            {
+              "correctAns": "The reference of the array",
+              "selectedOption": "Length of the array",
+              "questionDescription": "When an array is passed to a method, what does the method receive?"
+            },
+            {
+              "correctAns": "objects",
+              "selectedOption": "primitive data types",
+              "questionDescription": "Arrays in java are-"
+            }
+          ]
+        },
+        {
+          "categoryName": "Javascript",
+          "totalScore": 20,
+          "result": [
+            {
+              "correctAns": "Both",
+              "selectedOption": "Both",
+              "questionDescription": "Which of the following keywords is used to define a variable in Javascript? "
+            },
+            {
+              "correctAns": "both a and b",
+              "selectedOption": "both a and b",
+              "questionDescription": "Which of the following methods is used to access HTML elements using Javascript?"
+            },
+            {
+              "correctAns": "Ignores the statements",
+              "selectedOption": "Gives a warning",
+              "questionDescription": "Upon encountering empty statements, what does the Javascript Interpreter do?"
+            },
+            {
+              "correctAns": "const",
+              "selectedOption": "constants",
+              "questionDescription": "How can a datatype be declared to be a constant type?"
+            },
+            {
+              "correctAns": "in",
+              "selectedOption": "exists",
+              "questionDescription": "What keyword is used to check whether a given property is valid or not?"
             }
           ]
         }
