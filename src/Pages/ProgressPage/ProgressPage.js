@@ -1,8 +1,10 @@
 import axios from "axios";
 import React, { Component } from "react";
-import './progress.module.css'
-import { connect } from "react-redux";
+import html2canvas from 'html2canvas';
+import { jsPDF } from 'jspdf';
 
+import { connect } from "react-redux";
+// import Pdf from "react-to-pdf";
 class ProgressPage extends Component {
   constructor() {
     super();
@@ -10,6 +12,7 @@ class ProgressPage extends Component {
       userReport: null,
       isView: false,
     };
+    this.pdfRef = React.createRef();
   }
 
   componentDidMount() {
@@ -17,7 +20,7 @@ class ProgressPage extends Component {
       .get(`http://localhost:3001/users/${this.props.userId.id}`)
       .then((res) => {
         let userProgressData = res.data;
-        this.setState({...this.state,userReport: userProgressData})
+        this.setState({ ...this.state, userReport: userProgressData });
         console.log("userProgressData:", userProgressData);
         if (userProgressData.report.length > 0) {
           this.setState({ userReport: userProgressData });
@@ -29,57 +32,86 @@ class ProgressPage extends Component {
         console.log("err:", err);
       });
   }
+   handleDownloadPdf = async () => {
+    const element = this.pdfRef.current;
+    const canvas = await html2canvas(element);
+    const data = canvas.toDataURL('image/png');
 
+    const pdf = new jsPDF();
+    const imgProperties = pdf.getImageProperties(data);
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight =
+      (imgProperties.height * pdfWidth) / imgProperties.width;
+
+    pdf.addImage(data, 'PNG', 0, 0, pdfWidth, pdfHeight);
+    pdf.save('print.pdf');
+  };
 
   render() {
     return (
       <>
-        <div>
-          <div><h2>
-            Hey!, {this.props.userId.name} You can view your progress report or
-            you can download in pdf format,click! on below buttons according to
-            your choice
-          </h2>
-          <div className={"button-div"}>
-            <button onClick={()=> this.setState({...this.state,isView: true})}>View</button>
-            <button>Download</button>
-          </div></div>
+        <div ref={this.pdfRef}>
           <div>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Category Name</th>
-              <th>Question</th>
-              <th>Correct Answer</th>
-              <th>Your Answer</th>
-              <th>Total Score</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.userReport?.report?.map((ele,ind) => (
-              <tr key={ele.ind}>
-                <td>{ele.categoryName}</td>
-                <td>{ele.result.map((res,ind)=>{
-                 return( <div>
-                  <p>{ind+1}.{res.questionDescription}</p>
-                 </div>)
-                })}</td>
-                <td>{ele.result.map((res,ind)=>{
-                 return( <div>
-                  <p>{res.correctAns}</p>
-                 </div>)
-                })}</td>
-                <td>{ele.result.map((res,ind)=>{
-                 return( <div>
-                  <p>{res.selectedOption}</p>
-                 </div>)
-                })}</td>
-                <td>{ele.totalScore}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            <div className={"button-div"}>
+              <button
+                onClick={() => this.setState({ ...this.state, isView: true })}
+              >
+                View
+              </button>
+              <button onClick={this.handleDownloadPdf}>Download</button>
+            </div>
+          </div>
+
+          <div>
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Category Name</th>
+                  <th>Question</th>
+                  <th>Correct Answer</th>
+                  <th>Your Answer</th>
+                  <th>Total Score</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.state.userReport?.report?.map((ele, ind) => (
+                  <tr key={ele.ind}>
+                    <td>{ele.categoryName}</td>
+                    <td>
+                      {ele.result.map((res, ind) => {
+                        return (
+                          <div>
+                            <p>
+                              {ind + 1}.{res.questionDescription}
+                            </p>
+                          </div>
+                        );
+                      })}
+                    </td>
+                    <td>
+                      {ele.result.map((res, ind) => {
+                        return (
+                          <div>
+                            <p>{res.correctAns}</p>
+                          </div>
+                        );
+                      })}
+                    </td>
+                    <td>
+                      {ele.result.map((res, ind) => {
+                        return (
+                          <div>
+                            <p>{res.selectedOption}</p>
+                          </div>
+                        );
+                      })}
+                    </td>
+                    <td>{ele.totalScore}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </>
     );
@@ -87,7 +119,7 @@ class ProgressPage extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log('state:', state)
+  console.log("state:", state);
   return {
     userId: state.userInfo.userDetails,
     result: state.userInfo.result,
@@ -97,7 +129,9 @@ const mapStateToProps = (state) => {
   };
 };
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    // printPdf: ()=> print()
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProgressPage);
