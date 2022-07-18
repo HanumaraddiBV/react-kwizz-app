@@ -50,10 +50,6 @@ export const updateResultAgainEmpty = () => {
 };
 
 export const updatedProgressReport = (payload) => (dispatch) => {
-  
-
-
-
   axios
     .patch(`http://localhost:3001/users/${payload.userId.userDetails.id}`, {
       report: payload.quizResultInfo,
@@ -65,3 +61,27 @@ export const updatedProgressReport = (payload) => (dispatch) => {
       console.log(error);
     });
 };
+
+// export const addQuestionToDatabase = (payload, categoryTitle) => {
+//   axios
+//     .patch(`http://localhost:3001/questionData?category=${categoryTitle}`, {
+//       questions: [...payload],
+//     })
+//     .then((res) => {
+//       console.log("res:", res.data);
+//       let payloadData = res.data;
+//       console.log("payloadData:", payloadData);
+//       // handleQuestions(payloadData)
+//     })
+//     .catch((err) => {
+//       console.log("err:", err);
+//     });
+  
+// };
+
+// export const handleQuestions = (payload)=>{
+//   return {
+//     type: actionTypes.ADD_QUESTIONS,
+//     payload,
+//   };
+// }

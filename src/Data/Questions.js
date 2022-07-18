@@ -1,4 +1,4 @@
-export const questionData = [
+export const questionDatas = [
   // React Quiz Questions
   {
     category: "React",

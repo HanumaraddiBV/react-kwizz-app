@@ -3,6 +3,7 @@ import * as actionTypes from "./ActionTypes";
 
 const initialState = {
   progressData: [],
+  questionDataStore:[]
 };
 
 export const resultReducer = (state = initialState, action) => {
@@ -17,6 +18,11 @@ export const resultReducer = (state = initialState, action) => {
           ...state,
           progressData: [],
         };
+      // case actionTypes.ADD_QUESTIONS:
+      //   return{
+      //     ...state,
+      //     questionDataStore: action.payload
+      //   }
     default:
       return state;
   }

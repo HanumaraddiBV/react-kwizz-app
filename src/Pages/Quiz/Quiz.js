@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory, useParams } from "react-router-dom";
@@ -5,7 +6,7 @@ import {
   LINK_STYLE,
   RESULT_ROUTE,
 } from "../../components/constatnts/constants";
-import { questionData } from "../../Data/Questions";
+import { questionDatas } from "../../Data/Questions";
 import {
   addResultToProgressArr,
   answereIsWrong,
@@ -22,6 +23,19 @@ export const Quiz = () => {
   //keep record of question number
   const [quesNum, setQuesNum] = useState(0);
 
+  const [questionData, setQuestionData] = useState(questionDatas);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3001/questionData`)
+      .then((res) => {
+        let allList = res.data;
+        // console.log("allList:", allList);
+        setQuestionData(allList);
+      })
+      .catch((err) => {
+        console.log("err:", err);
+      });
+  }, []);
   const timeRef = useRef();
   //creating state for timer
   const [timer, setTimer] = useState(15);
@@ -40,6 +54,7 @@ export const Quiz = () => {
   const { category } = useParams();
 
   //matching the category with the data
+  // console.log("questionData:", questionData);
   const quizCategory = questionData.find((item) => item.category === category);
 
   // according to the question number getting the correct answer
@@ -82,66 +97,39 @@ export const Quiz = () => {
     }
   };
 
-  // useEffect(() => {
-  //   setTimerApp()
-  //  }, []);
-  //  const setTimerApp = ()=>{
-  //    timeRef.current = setInterval(() => {
-  //      setTimer((p) => p - 1);
+  let intervalId;
+  const timerFunc = () => {
+    setTimer((prevCounter) => prevCounter - 1);
+    if (timer <= 0) {
+      console.log("timer`111:", timer);
 
-  //    }, 1000);
-  //    if(timer <= 0){
-  //     nextHandler();
-  //    }
-  //    if (timer <= 0 && quesNum < 4) {
-        
-        
-  //     }
-  //  }
-  
-
-
-  
-  // if (quesNum <= 4) {
-  //   timer > 0 && setTimeout(() => setTimer(timer - 1), 1000);
-  // }
-  // if (timer == 0 && quesNum < 4) {
-  //   nextHandler();
-  //   setTimer(15);
-  //   console.log(quesNum);
-  // }
-    let intervalId
-   const[count,setcount] = useState()
-    const timerFunc = ()=>{
-      setTimer((prevCounter) => prevCounter - 1)
-      if(timer <= 0){
-        console.log('timer`111:', timer)
-    
-        clearInterval(intervalId)
-        nextHandler()
-      }
+      clearInterval(intervalId);
+      nextHandler();
     }
+  };
 
-  
-    useEffect(()=>{
-       intervalId = setInterval(timerFunc,1000)
+  useEffect(() => {
+    intervalId = setInterval(timerFunc, 1000);
 
-       return () => clearInterval(intervalId);
-    },[])
-  console.log("timer:", timer);
+    return () => clearInterval(intervalId);
+  }, []);
+  // console.log("timer:", timer);
+  console.log('quesNum:', quesNum)
   const nextHandler = () => {
     clearInterval(intervalId);
-    setQuesNum(quesNum + 1);
+    if(quesNum < 4) {
+      setQuesNum(quesNum + 1);
+    }
 
     setDisableOption(false);
     setNxtDisable(true);
     setTimer(15);
   };
-  if(timer <= 0){
-    console.log('timer`111:', timer)
+  if (timer <= 0 && quesNum==4) {
+    console.log("timer`111:", timer);
 
-    clearInterval(intervalId)
-    nextHandler()
+    clearInterval(intervalId);
+    nextHandler();
   }
   const addResultToState = () => {
     dispatch(addResultToProgressArr({ categoryName, totalScore, result }));
@@ -159,7 +147,7 @@ export const Quiz = () => {
             </div>
             <div className={styles.quiz_score}>
               <span>
-                Timer: <strong>{timer >= 0? timer : '00'}</strong>
+                Timer: <strong>{timer >= 0 ? timer : "00"}</strong>
               </span>
             </div>
           </div>
