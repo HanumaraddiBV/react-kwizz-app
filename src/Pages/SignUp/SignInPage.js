@@ -138,10 +138,11 @@ const SignInPage = () => {
           <label htmlFor="confirm_password">{t("Confirm Password")}</label>
           <div className={styles.view_pass}>
             <input
+            
               type={visible ? "text" : "password"}
               name="confirmPassword"
               id="confirm_password"
-              className={styles.confirm_pass}
+              className={`${styles.confirm_pass} ipt`}
               required
               autoComplete="off"
               value={registerData.confirmPass}

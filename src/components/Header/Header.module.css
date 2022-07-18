@@ -1,7 +1,19 @@
 .container {
-  max-width: 1200px;
-  width: 96%;
-  margin: 0 auto;
+  /* border: 1px solid red; */
+  margin-bottom: 50px;
+  /* max-width: 1200px; */
+  position: fixed;
+  top: 0;
+  width: 98%;
+  color: black;
+  margin: auto;
+  /* ---Glass */
+  backdrop-filter: blur(3px) saturate(200%);
+  -webkit-backdrop-filter: blur(3px) saturate(200%);
+  background-color: rgba(255, 255, 255, 0.24);
+border-radius: 12px;
+  border: 1px solid rgba(209, 213, 219, 0.3);
+  border-radius: 12px;
 }
 
 .nav_links {
@@ -12,11 +24,9 @@
 
 .nav_links > * {
   margin-right: 16px;
- 
 }
-.nav_links li{
+.nav_links li {
   list-style: none;
- 
 }
 .nav_item {
   color: black;

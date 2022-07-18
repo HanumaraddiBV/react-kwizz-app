@@ -3,9 +3,10 @@ import React from "react";
 const Input = (props) => {
   //   console.log('props:', props)
   return (
-    <div>
-      <label>{props.title}</label>
+    <div >
+      <label >{props.title}</label><br/> <br/>
       <input
+      className="ipt"
         onChange={props.onChange}
         name={props.name}
         value={props.val}

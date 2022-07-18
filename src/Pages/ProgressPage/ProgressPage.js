@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { Component } from "react";
-import html2canvas from 'html2canvas';
-import { jsPDF } from 'jspdf';
+import html2canvas from "html2canvas";
+import { jsPDF } from "jspdf";
 
 import { connect } from "react-redux";
 // import Pdf from "react-to-pdf";
@@ -32,37 +32,34 @@ class ProgressPage extends Component {
         console.log("err:", err);
       });
   }
-   handleDownloadPdf = async () => {
+  handleDownloadPdf = async () => {
     const element = this.pdfRef.current;
     const canvas = await html2canvas(element);
-    const data = canvas.toDataURL('image/png');
+    const data = canvas.toDataURL("image/png");
 
     const pdf = new jsPDF();
     const imgProperties = pdf.getImageProperties(data);
     const pdfWidth = pdf.internal.pageSize.getWidth();
-    const pdfHeight =
-      (imgProperties.height * pdfWidth) / imgProperties.width;
+    const pdfHeight = (imgProperties.height * pdfWidth) / imgProperties.width;
 
-    pdf.addImage(data, 'PNG', 0, 0, pdfWidth, pdfHeight);
-    pdf.save('print.pdf');
+    pdf.addImage(data, "PNG", 0, 0, pdfWidth, pdfHeight);
+    pdf.save("print.pdf");
   };
 
   render() {
     return (
-      <>
+      <div style={{ marginTop: "80px" }}>
         <div ref={this.pdfRef}>
           <div>
             <div className={"button-div"}>
-              <button
-                onClick={() => this.setState({ ...this.state, isView: true })}
-              >
-                View
+              <button className="btn" onClick={this.handleDownloadPdf}>
+                Download
               </button>
-              <button onClick={this.handleDownloadPdf}>Download</button>
             </div>
           </div>
 
           <div>
+            <h1>{`Hello ${this.props.userId.name} this your Progress report`}</h1>
             <table className="table">
               <thead>
                 <tr>
@@ -113,7 +110,7 @@ class ProgressPage extends Component {
             </table>
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }

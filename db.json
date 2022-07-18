@@ -12,7 +12,39 @@
       "name": "Admin",
       "email": "admin@admin.com",
       "password": "Admin@123",
-      "report": []
+      "report": [
+        {
+          "categoryName": "React",
+          "totalScore": 30,
+          "result": [
+            {
+              "correctAns": "Virtual DOM",
+              "selectedOption": "Origin DOM",
+              "questionDescription": "\tWhich of the following is used in React.js to increase performance? "
+            },
+            {
+              "correctAns": "user interface framework",
+              "selectedOption": "both a and b",
+              "questionDescription": "\tWhat is ReactJS?"
+            },
+            {
+              "correctAns": "props",
+              "selectedOption": "props",
+              "questionDescription": "Identify the one which is used to pass data to components from outside"
+            },
+            {
+              "correctAns": "Jordan Walke",
+              "selectedOption": "Jordan Walke",
+              "questionDescription": "Who created React.js?"
+            },
+            {
+              "correctAns": "Javascript",
+              "selectedOption": "Javascript",
+              "questionDescription": "In which language is React.js written?"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": 11,
@@ -180,6 +212,139 @@
               "correctAns": "in",
               "selectedOption": "exists",
               "questionDescription": "What keyword is used to check whether a given property is valid or not?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "name": "nikki",
+      "email": "mundawadshreedevi@gmail.com",
+      "password": "12@Hn",
+      "report": [
+        {
+          "categoryName": "React",
+          "totalScore": 20,
+          "result": [
+            {
+              "correctAns": "Virtual DOM",
+              "selectedOption": "Origin DOM",
+              "questionDescription": "\tWhich of the following is used in React.js to increase performance? "
+            },
+            {
+              "correctAns": "props",
+              "selectedOption": "setState",
+              "questionDescription": "Identify the one which is used to pass data to components from outside"
+            },
+            {
+              "correctAns": "Jordan Walke",
+              "selectedOption": "Jordan Walke",
+              "questionDescription": "Who created React.js?"
+            },
+            {
+              "correctAns": "Javascript",
+              "selectedOption": "Javascript",
+              "questionDescription": "In which language is React.js written?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "reddy",
+      "email": "madhusudhanbv49@gmail.com",
+      "password": "123@Hn",
+      "report": [
+        {
+          "categoryName": "React",
+          "totalScore": 30,
+          "result": [
+            {
+              "correctAns": "Virtual DOM",
+              "selectedOption": "Virtual DOM",
+              "questionDescription": "\tWhich of the following is used in React.js to increase performance? "
+            },
+            {
+              "correctAns": "user interface framework",
+              "selectedOption": "user interface framework",
+              "questionDescription": "\tWhat is ReactJS?"
+            },
+            {
+              "correctAns": "props",
+              "selectedOption": "setState",
+              "questionDescription": "Identify the one which is used to pass data to components from outside"
+            },
+            {
+              "correctAns": "Jordan Walke",
+              "selectedOption": "Tim lee",
+              "questionDescription": "Who created React.js?"
+            },
+            {
+              "correctAns": "Javascript",
+              "selectedOption": "Javascript",
+              "questionDescription": "In which language is React.js written?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "reddy",
+      "email": "a@a.com",
+      "password": "12@Hn",
+      "report": [
+        {
+          "categoryName": "React",
+          "totalScore": 20,
+          "result": [
+            {
+              "correctAns": "user interface framework",
+              "selectedOption": "Server-side framework",
+              "questionDescription": "\tWhat is ReactJS?"
+            },
+            {
+              "correctAns": "props",
+              "selectedOption": "setState",
+              "questionDescription": "Identify the one which is used to pass data to components from outside"
+            },
+            {
+              "correctAns": "Jordan Walke",
+              "selectedOption": "Jordan Walke",
+              "questionDescription": "Who created React.js?"
+            },
+            {
+              "correctAns": "Javascript",
+              "selectedOption": "Javascript",
+              "questionDescription": "In which language is React.js written?"
+            }
+          ]
+        },
+        {
+          "categoryName": "React",
+          "totalScore": 20,
+          "result": [
+            {
+              "correctAns": "user interface framework",
+              "selectedOption": "Server-side framework",
+              "questionDescription": "\tWhat is ReactJS?"
+            },
+            {
+              "correctAns": "props",
+              "selectedOption": "setState",
+              "questionDescription": "Identify the one which is used to pass data to components from outside"
+            },
+            {
+              "correctAns": "Jordan Walke",
+              "selectedOption": "Jordan Walke",
+              "questionDescription": "Who created React.js?"
+            },
+            {
+              "correctAns": "Javascript",
+              "selectedOption": "Javascript",
+              "questionDescription": "In which language is React.js written?"
             }
           ]
         }

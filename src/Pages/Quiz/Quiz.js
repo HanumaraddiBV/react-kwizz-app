@@ -24,10 +24,10 @@ export const Quiz = () => {
 
   const timeRef = useRef();
   //creating state for timer
-  const [timer, setTimer] = useState(20);
+  const [timer, setTimer] = useState(15);
   //extracting category name from useHistory hook
   const history = useHistory();
-  console.log("history:", history.location.pathname.split("/")[2]);
+  // console.log("history:", history.location.pathname.split("/")[2]);
   //to keep the selected option
   const [selected, setSelected] = useState();
 
@@ -83,25 +83,70 @@ export const Quiz = () => {
   };
 
   // useEffect(() => {
+  //   setTimerApp()
+  //  }, []);
+  //  const setTimerApp = ()=>{
+  //    timeRef.current = setInterval(() => {
+  //      setTimer((p) => p - 1);
 
-  //   setCounter()
-  // },[]);
+  //    }, 1000);
+  //    if(timer <= 0){
+  //     nextHandler();
+  //    }
+  //    if (timer <= 0 && quesNum < 4) {
+        
+        
+  //     }
+  //  }
+  
 
-  // const setCounter = ()=>{
-  //   timeRef.current = setInterval(() => {
-  //     setTimer((p) => p-1);
-  //   }, 1000);
 
-  //   }
-  const addResultToState = () => {
-    dispatch(addResultToProgressArr({categoryName,totalScore,result}));
-  };
+  
+  // if (quesNum <= 4) {
+  //   timer > 0 && setTimeout(() => setTimer(timer - 1), 1000);
+  // }
+  // if (timer == 0 && quesNum < 4) {
+  //   nextHandler();
+  //   setTimer(15);
+  //   console.log(quesNum);
+  // }
+    let intervalId
+   const[count,setcount] = useState()
+    const timerFunc = ()=>{
+      setTimer((prevCounter) => prevCounter - 1)
+      if(timer <= 0){
+        console.log('timer`111:', timer)
+    
+        clearInterval(intervalId)
+        nextHandler()
+      }
+    }
+
+  
+    useEffect(()=>{
+       intervalId = setInterval(timerFunc,1000)
+
+       return () => clearInterval(intervalId);
+    },[])
+  console.log("timer:", timer);
   const nextHandler = () => {
+    clearInterval(intervalId);
     setQuesNum(quesNum + 1);
 
     setDisableOption(false);
     setNxtDisable(true);
+    setTimer(15);
   };
+  if(timer <= 0){
+    console.log('timer`111:', timer)
+
+    clearInterval(intervalId)
+    nextHandler()
+  }
+  const addResultToState = () => {
+    dispatch(addResultToProgressArr({ categoryName, totalScore, result }));
+  };
+
   return (
     <div>
       <div>
@@ -114,7 +159,7 @@ export const Quiz = () => {
             </div>
             <div className={styles.quiz_score}>
               <span>
-                Timer: <strong>{timer}</strong>
+                Timer: <strong>{timer >= 0? timer : '00'}</strong>
               </span>
             </div>
           </div>

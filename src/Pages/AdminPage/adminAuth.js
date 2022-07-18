@@ -2,27 +2,180 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { LINK_STYLE, LOGIN_ROUTE } from "../../components/constatnts/constants";
+import Input from "../../components/GeneralComponents/Input";
+import { Button } from "../../components/GeneralComponents/Button";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import Button from "react-bootstrap/Button";
+import { withTranslation } from "react-i18next";
+import { Select } from "../../components/GeneralComponents/Select";
+import TextArea from "../../components/GeneralComponents/TextArea";
+import { questionData } from "../../Data/Questions";
 
 class adminAuth extends Component {
+  constructor() {
+    super();
+    this.state = {
+      categoryName: "",
+      question: "",
+      optionA: "",
+      optionB: "",
+      optionC: "",
+      optionD: "",
+      correctAnswer: "",
+      categoryOptions: ["React", "Javascript", "Java"],
+    };
+  }
+  handleChange = (e) => {
+    const { name, value } = e.target;
+    this.setState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+  formSubmitHandler = (e) => {
+    e.preventDefault();
+    // console.log(this.state)
+    for (let i = 0; i < questionData.length; i++) {
+      if (questionData[i].category === this.state.categoryName) {
+        console.log("questionData[i]:", questionData[i]);
+        questionData = [
+          ...questionData,
+          {
+            category: this.state.categoryName,
+            questions: [
+              ...questionData[i].questions,
+              {
+                question: this.state.question,
+                options: [
+                  this.state.optionA,
+                  this.state.optionB,
+                  this.state.optionC,
+                  this.state.optionD,
+                ],
+                answer: this.state.correctAnswer,
+              },
+            ],
+          },
+        ];
+        // questionData[i].questions.push({
+        //   question:this.state.question,
+        //   options:[this.state.optionA,this.state.optionB,this.state.optionC,this.state.optionD],
+        //   answer: this.state.correctAnswer
+        // })
+        console.log("questionData[i]:", questionData);
+      }
+    }
+  };
   render() {
+    const { t } = this.props;
+
     return (
       <>
-        {this.props.userEmail === "admin@admin.com" &&
+        <div>
+          {this.props.userEmail === "admin@admin.com" &&
         this.props.userPassword === "Admin@123" ? (
-          <div>
-            <div>
-              <h2>Hello!, Admin You have full controll of this application.</h2>
-            </div>
+          <div style={{ marginTop: "100px", marginLeft: "10px" }}>
+            <h2>Hello!, Admin You have full control of this application.</h2>
 
-            <div>
+            <div className="main-admin">
               <h3>Add questions according to category </h3>
-              <form>
+              <form onSubmit={this.formSubmitHandler}>
+                <Select
+                className="Select-Cat"
+                  title={"Category"}
+                  name={"categoryName"}
+                  options={this.state.categoryOptions}
+                  value={this.state.categoryName}
+                  onChange={this.handleChange}
+                  placeholder={"Select Category"}
+                />
+                <TextArea
+                  title={"Question Description"}
+                  name={"question"}
+                  rows={"5"}
+                  cols={"80"}
+                  value={this.state.question}
+                  handleChange={this.handleChange}
+                  placeholder={"Enter the question description"}
+                />
+                <div className="Main-input">
+                  <div className="input-group a">
+                    <Input className="input"
+                      inputType={"text"}
+                      name={"optionA"}
+                      title={t("Option A")}
+                      className="textfield ipt"
+                      required
+                      placeholder={t("Enter Option A")}
+                      // autoComplete="off"
 
+                      val={this.state.optionA}
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                  <div className="input-group b">
+                    <Input
+                      inputType={"text"}
+                      name={"optionB"}
+                      title={t("Option B")}
+                      className="textfield ipt"
+                      required
+                      placeholder={t("Enter Option B")}
+                      // autoComplete="off"
 
+                      val={this.state.optionB}
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                  <div className="input-group a">
+                    <Input
+                      inputType={"text"}
+                      name={"optionC"}
+                      title={t("Option C")}
+                      className="textfield ipt"
+                      required
+                      placeholder={t("Enter Option C")}
+                      // autoComplete="off"
+
+                      val={this.state.optionC}
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                  <div className="input-group b">
+                    <Input
+                    className="input"
+                      inputType={"text"}
+                      name={"optionD"}
+                      title={t("Option D")}
+                      className="textfield ipt"
+                      required
+                      placeholder={t("Enter Option D")}
+                      // autoComplete="off"
+
+                      val={this.state.optionD}
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                </div>
+                <div className="input-group correct">
+                  <Input
+                  className="input"
+                    inputType={"text"}
+                    name={"correctAnswer"}
+                    title={t("Correct Answer")}
+                    className="textfield ipt"
+                    required
+                    placeholder={t("Enter correct Answer")}
+                    val={this.state.correctAnswer}
+                    onChange={this.handleChange}
+                  />
+                </div>
+
+                <Button className="submit-btn" type="submit" title={"Submit"} />
               </form>
             </div>
           </div>
-        ) : (
+          ) : (
           <div className="signup-alert">
             <h2>
               If you want to access this page you have to login as admin
@@ -35,6 +188,7 @@ class adminAuth extends Component {
             </button>
           </div>
         )}
+        </div>
       </>
     );
   }
@@ -47,4 +201,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(adminAuth);
+export default connect(mapStateToProps)(withTranslation()(adminAuth));

@@ -11,3 +11,5 @@ export const SIGN_OUT = "SIGN_OUT"
 export const ADD_RESULT = 'ADD_RESULT'
 
 export const UPDATE_RESULT = "UPDATE_RESULT"
+
+export const ADD_QUESTIONS = "ADD_QUESTIONS"

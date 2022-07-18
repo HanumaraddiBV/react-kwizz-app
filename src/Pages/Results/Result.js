@@ -26,7 +26,7 @@ class Result extends Component {
   render() {
     return (
       <div>
-        <h1 className="center-text">Score : {this.props.totalScore}/50</h1>
+        <h1 className="center-text" style={{marginTop:'90px'}}>Score : {this.props.totalScore}/50</h1>
         <div className={styles.result_container}>
           <div className={styles.result_check}>
             <ol>
