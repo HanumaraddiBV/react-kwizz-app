@@ -2,6 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+### Medium Blog Link
+<a>https://medium.com/@hanumaraddin14/quiz-app-7ccb323d9026<a>
+
 ## Available Scripts
 
 In the project directory, you can run:
